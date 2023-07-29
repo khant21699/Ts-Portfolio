@@ -93,8 +93,11 @@ export default function AboutMe({ setCurrentPage }: Props) {
                   <li>Css</li>
                   <li>Javascript</li>
                   <li>Typescript</li>
-                  <li>React.js</li>
+                  <li>React</li>
+                  <li>React Native</li>
                   <li>Tailwind Css</li>
+                  <li>Bootstrap</li>
+                  <li>Redux</li>
                 </ul>
               </div>
             </div>
