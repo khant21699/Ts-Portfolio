@@ -29,7 +29,14 @@ export default function HomePage({ setCurrentPage }: Props) {
               <p className=" text-secondary text-[20px] mt-[50px]">
                 I craft responsive and interactive websites for all platforms.
               </p>
-              <button className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px]">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  const contact = document.getElementById(Pages.Contact);
+                  contact?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px]"
+              >
                 Contact ME!!
               </button>
             </div>
