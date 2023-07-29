@@ -55,7 +55,7 @@ export default function Works({ setCurrentPage }: Props) {
         />
         <WorksCards
           techs={["React Native", "TMDBapi", "Nativewind"]}
-          title="React Native Movie App"
+          title="Movie Mobile App"
           imgSrc={RNMovie}
           git="https://github.com/khant21699/ReactNative-MovieApp"
           live=""
