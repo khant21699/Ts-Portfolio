@@ -25,7 +25,7 @@ export default function Contact({ setCurrentPage }: Props) {
         viewport={{ amount: 0.9 }}
       >
         <h2>
-          Feel free to send an email on{" "}
+          Feel free to send an email to{" "}
           <a
             className=" text-primary text-[20px] cursor-pointer"
             href="mailto:khant21699@hotmail.com"
