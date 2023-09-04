@@ -110,7 +110,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
                 <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col justify-around px-3">
                   <li>HND in Software Engnieering</li>
                   <li>
-                    BSc(Hons) in Cumputing (University of Gloucestershire)
+                    BSc(Hons) in Computing (University of Gloucestershire)
                   </li>
                 </ul>
               </div>
