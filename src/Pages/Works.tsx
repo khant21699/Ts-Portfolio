@@ -63,7 +63,7 @@ export default function Works({ setCurrentPage }: Props) {
           live=""
         />
         <WorksCards
-          techs={["React.js", "Tailwind CSS", "themealdb API"]}
+          techs={["Next.js", "Tailwind CSS", "themealdb.com API"]}
           title="NextJs Food Recipes App"
           live="https://food-recipes-nextjs-sux3.vercel.app/"
           imgSrc={Food}
