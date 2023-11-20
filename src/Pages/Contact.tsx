@@ -28,13 +28,13 @@ export default function Contact({ setCurrentPage }: Props) {
           Feel free to send an email to{" "}
           <a
             className=" text-primary text-[20px] cursor-pointer"
-            href="mailto:khant21699@hotmail.com"
+            href="mailto:khant21699@gmail.com"
           >
             khant21699@hotmail.com
           </a>
         </h2>
         <div className="mt-5 border-primary border-[2px] p-1 max-w-full w-[700px] cursor-pointer ">
-          <a href="mailto:khant21699@hotmail.com">
+          <a href="mailto:khant21699@gmail.com">
             <img className=" w-full" src={EmailGraphic} alt="" />
           </a>
         </div>

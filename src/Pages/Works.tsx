@@ -5,6 +5,8 @@ import EvoGym from "../assets/EvoGym.png";
 import Netflix from "../assets//Netflix.png";
 import Portfolio from "../assets/Portfolio.png";
 import RNMovie from "../assets/RNMovie.png";
+import News from "../assets/NewsApp.png";
+import Food from "../assets/FoodRecipe.png";
 
 import { motion } from "framer-motion";
 
@@ -47,18 +49,32 @@ export default function Works({ setCurrentPage }: Props) {
           git="https://github.com/khant21699/Ts-Portfolio"
         />
         <WorksCards
-          techs={["React.js", "Redux", "TMDBapi"]}
+          techs={["React.js", "Redux", "TMDB API"]}
           title="Netflix Clone"
           live="https://movie-nefflix-cline-app.netlify.app/"
           imgSrc={Netflix}
           git="https://github.com/khant21699/netflixClone"
         />
         <WorksCards
-          techs={["React Native", "TMDBapi", "Nativewind"]}
+          techs={["React Native", "TMDB API", "Nativewind"]}
           title="Movie Mobile App"
           imgSrc={RNMovie}
           git="https://github.com/khant21699/ReactNative-MovieApp"
           live=""
+        />
+        <WorksCards
+          techs={["React.js", "Tailwind CSS", "themealdb API"]}
+          title="NextJs Food Recipes App"
+          live="https://food-recipes-nextjs-sux3.vercel.app/"
+          imgSrc={Food}
+          git="https://github.com/khant21699/food-recipes-nextjs"
+        />
+        <WorksCards
+          techs={["Next.js", "Typescript", "Tailwind CSS", "MediaStack API"]}
+          title="NextJs News App"
+          live="https://live-news-next-app.vercel.app/"
+          imgSrc={News}
+          git="https://github.com/khant21699/NewsApp-Next"
         />
       </motion.div>
     </section>

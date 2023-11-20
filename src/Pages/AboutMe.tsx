@@ -126,7 +126,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
                     Internship Developer at Akiya Research(2023,Jan - 2023,Apr)
                   </li>
                   <li>
-                    Junior Developer at Akiya Research(2023,May - Present)
+                    Junior Developer at Akiya Research(2023,Apr - Present)
                   </li>
                 </ul>
               </div>

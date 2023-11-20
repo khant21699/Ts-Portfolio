@@ -37,13 +37,13 @@ export default function WorksCards({ title, techs, imgSrc, live, git }: Props) {
         )}
       </div>
       <div className=" h-[230px] ">
-        <h2 className=" flex flex-wrap gap-2 py-1 justify-center items-center min-h-[100px] text-[12px] border-secondary border-b-[1px] text-primary ">
+        <h2 className=" text-center flex flex-wrap gap-2 py-1 justify-center items-center min-h-[100px] text-[12px] border-secondary border-b-[1px] text-primary ">
           {techs.map((t) => {
             return <p className="p-3 border-secondary border-[1px]">{t}</p>;
           })}
         </h2>
         <div className=" h-[130px] flex flex-col justify-around w-full overflow-hidden">
-          <h1 className="text-primary text-[23px] px-5 py-1 m-0 w-full overflow-hidden">
+          <h1 className="text-primary text-[23px] px-5 py-1 m-0 w-full overflow-hidden text-center">
             {title}
           </h1>
           <div className=" w-full flex  justify-around ">
