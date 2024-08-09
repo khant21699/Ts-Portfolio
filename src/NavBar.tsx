@@ -18,7 +18,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
   return (
     <div
       className={` z-20  w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-[10%] items-center  ${
-        !topOfPage ? " shadow-sm shadow-primary bg-black" : "bg-transparent"
+        !topOfPage ? " shadow-sm shadow-primary bg-bg" : "bg-transparent"
       }`}
     >
       {/* brand */}
@@ -84,7 +84,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
         id="mbNav"
         className={`mb:hidden h-[100vh] w-[80vw] fixed ${
           !showMbNav ? "right-[-100%]" : "right-0"
-        } top-0 justify-center flex items-center border-primary border-l bg-body z-10 transition-all `}
+        } top-0 justify-center flex items-center border-primary border-l bg-bg z-10 transition-all `}
       >
         <div className="h-3/5 before:content-Rectangle before:absolute before:left-10 before:bottom-56 after:content-graphic after:absolute after:right-5 after:bottom-20">
           <div className=" absolute top-10 right-[50px]">

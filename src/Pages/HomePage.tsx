@@ -35,7 +35,7 @@ export default function HomePage({ setCurrentPage }: Props) {
                   const contact = document.getElementById(Pages.Contact);
                   contact?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px] after:absolute relative after:w-0 after:h-full hover:after:w-full  after:transition-all after:bg-primary after:left-0 after:top-0"
+                className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px] after:absolute relative after:w-0 after:h-full hover:after:w-full  after:transition-all after:bg-primary after:left-0 after:top-0 hover:text-bg"
               >
                 <span className="relative z-20"> Contact ME!!</span>
               </button>
@@ -47,7 +47,7 @@ export default function HomePage({ setCurrentPage }: Props) {
             <img
               src={BG}
               alt=""
-              className="w-2/5 h-2/5 absolute z-1 mb:top-[70px] top-[-30px] left-0"
+              className="w-2/5 h-2/5 hidden absolute z-1 mb:top-[70px] top-[-30px] left-0"
             />
             <img
               className="mb:w-full mb:h-full z-3 relative   w-[300px]"
@@ -63,7 +63,7 @@ export default function HomePage({ setCurrentPage }: Props) {
         </div>
         {/* quote */}
         <div className="w-full flex items-center justify-center min-h-[20vh] mt-[30px]">
-          <div className=" text-[35px] text-secondary font-firaCode border-secondary border-[1px] p-[20px]">
+          <div className=" text-[35px] text-primary font-firaCode border-secondary border-[1px] p-[20px]">
             "Make it work, make it right, make it fast"
           </div>
         </div>

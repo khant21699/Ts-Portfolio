@@ -35,7 +35,7 @@ const ParticleBackground = () => {
           options={{
             background: {
               color: {
-                value: "#000",
+                value: "#021526",
               },
             },
             fpsLimit: 60,
@@ -63,7 +63,7 @@ const ParticleBackground = () => {
             },
             particles: {
               color: {
-                value: "#c778dd",
+                value: "#6EACDA",
               },
               move: {
                 direction: "none",
@@ -72,7 +72,7 @@ const ParticleBackground = () => {
                   default: "bounce",
                 },
                 random: false,
-                speed: 6,
+                speed: 4.5,
                 straight: false,
               },
               number: {
@@ -80,13 +80,13 @@ const ParticleBackground = () => {
                   enable: true,
                   area: 100,
                 },
-                value: 200,
+                value: 150,
               },
               opacity: {
-                value: 0.5,
+                value: 1,
               },
               shape: {
-                type: "circle",
+                type: "square",
               },
               size: {
                 value: { min: 1, max: 5 },

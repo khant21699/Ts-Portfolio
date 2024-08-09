@@ -5,8 +5,9 @@ export default {
     extend: {
       colors: {
         body: "#282c33",
-        primary: "#c778dd",
+        primary: "#86E3F8",
         secondary: "#abb2bf",
+        bg: "#021526",
       },
       screens: {
         mb: "900px",

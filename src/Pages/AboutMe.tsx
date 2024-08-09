@@ -29,7 +29,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
           {/* text */}
           <div className=" h-auto mb-10 mb:mb-0 mb:min-h-[60vh] text-secondary font-firaCode text-[20px] w-full mb:w-1/2  relative">
             <img
-              className=" absolute w-[100px] h-[100px] bottom-0 z-1] hidden mb:block"
+              className=" absolute w-[100px] h-[100px] bottom-0 z-1] hidden"
               src={BG}
               alt=""
             />
@@ -122,12 +122,13 @@ export default function AboutMe({ setCurrentPage }: Props) {
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
                 <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
                   <li>
-                    Junior Developer at Akiya Research(2023,Jan - 2024,Jan)
+                    Junior Developer at Akiya Research <br />
+                    (2023,Jan - 2024,Jan)
                   </li>
                   <li>
                     Frontend-Developer at{" "}
-                    <a href="pleasuredomes.ai">pleasuredomes.ai</a>(2024, <br />
-                    Apr - Present)
+                    <a href="pleasuredomes.ai">pleasuredomes.ai</a> <br />
+                    (2024, Apr - Present)
                   </li>
                 </ul>
               </div>
