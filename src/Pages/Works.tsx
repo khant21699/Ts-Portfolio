@@ -18,7 +18,7 @@ export default function Works({ setCurrentPage }: Props) {
   return (
     <section
       id={Pages.Works}
-      className=" w-full min-h-[100vh] py-[150px] text-white font-firaCode"
+      className=" w-full py-[150px] text-white font-firaCode"
     >
       {/* header */}
       <div className="mb-16 flex items-center gap-10">
@@ -29,7 +29,7 @@ export default function Works({ setCurrentPage }: Props) {
       </div>
       {/* works */}
       <motion.div
-        className="w-full justify-center flex-wrap flex gap-8 flex-col mb:flex-row "
+        className="w-full justify-center grid grid-cols-1 md:grid-cols-2 gap-4 "
         onViewportEnter={() => {
           setCurrentPage(Pages.Works);
         }}

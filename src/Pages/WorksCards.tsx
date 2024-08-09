@@ -25,52 +25,46 @@ export default function WorksCards({ title, techs, imgSrc, live, git }: Props) {
   };
   return (
     <motion.div
-      className=" mb:w-1/4 w-full border-secondary border-[1px]"
+      className=" w-full hover:!-translate-y-2 transition-all border-secondary relative group aspect-[5/3] border-[1px]"
       initial="hidden"
       whileInView="show"
       transition={{ duration: 0.7 }}
       variants={{ hidden: { opacity: 0, y: 50 }, show: { opacity: 1, y: 0 } }}
     >
-      <div className=" h-[200px] border-secondary border-b-[1px]">
-        {imgSrc && (
-          <img className=" object-cover w-full h-full" src={imgSrc} alt="" />
-        )}
-      </div>
-      <div className=" h-[230px] ">
-        <h2 className=" text-center flex flex-wrap gap-2 py-1 justify-center items-center min-h-[100px] text-[12px] border-secondary border-b-[1px] text-primary ">
-          {techs.map((t) => {
-            return (
-              <p className="p-3 border-secondary text-xs border-[1px]">{t}</p>
-            );
-          })}
-        </h2>
-        <div className=" h-[130px] flex flex-col justify-around w-full overflow-hidden">
-          <p className="text-primary text-lg px-5 py-1 m-0 w-full overflow-hidden text-center">
-            {title}
-          </p>
-          <div className=" w-full flex  justify-around ">
-            {live !== "" && (
+      <img
+        src={imgSrc}
+        className=" w-full h-full object-cover absolute top-0 left-0"
+        alt={imgSrc}
+      />
+      <div className=" w-full h-full flex justify-center items-center gap-4 text-center backdrop-blur-sm bg-bg bg-opacity-70 transition-opacity relative z-20 opacity-0 group-hover:opacity-100">
+        <div className=" flex flex-col h-full w-full gap-4 justify-center p-3">
+          <p className=" text-2xl font-bold text-primary">{title}</p>
+          <ul className=" flex gap-1 flex-wrap justify-center">
+            {techs.map((t) => {
+              return (
+                <li className=" text-base p-2 border-secondary border">{t}</li>
+              );
+            })}
+          </ul>
+          <div className=" flex justify-center gap-3 items-center">
+            {live && (
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  openLinkInNewTab("live");
-                }}
-                className=" flex justify-center items-center border-primary border-[1px] gap-1  py-2 px-5 cursor-pointer"
+                className=" flex text-lg justify-center items-center gap-1 p-2 border-primary border"
+                onClick={() => openLinkInNewTab("live")}
               >
-                <CgMediaLive color="#abb2bf" />
-                Live
+                <CgMediaLive />
+                <p>Live</p>
               </button>
             )}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                openLinkInNewTab("git");
-              }}
-              className=" flex justify-center items-center border-primary border-[1px] gap-1  py-2 px-5 cursor-pointer"
-            >
-              <AiFillGithub color="#abb2bf" />
-              GitHub
-            </button>
+            {git && (
+              <button
+                className=" flex text-lg justify-center items-center gap-1 p-2 border-primary border"
+                onClick={() => openLinkInNewTab("git")}
+              >
+                <AiFillGithub />
+                <p>GitHub</p>
+              </button>
+            )}
           </div>
         </div>
       </div>
