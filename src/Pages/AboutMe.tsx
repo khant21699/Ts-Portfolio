@@ -88,15 +88,14 @@ export default function AboutMe({ setCurrentPage }: Props) {
                 <h3>Skills</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col justify-around px-3">
+                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
                   <li>Html</li>
                   <li>Css</li>
                   <li>Javascript</li>
                   <li>Typescript</li>
-                  <li>React</li>
-                  <li>React Native</li>
+                  <li>React.js</li>
+                  <li>Vue.js</li>
                   <li>Tailwind Css</li>
-                  <li>Bootstrap</li>
                   <li>Redux</li>
                 </ul>
               </div>
@@ -107,7 +106,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
                 <h3>Education</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col justify-around px-3">
+                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
                   <li>HND in Software Engnieering</li>
                   <li>
                     BSc(Hons) in Computing (University of Gloucestershire)
@@ -121,12 +120,14 @@ export default function AboutMe({ setCurrentPage }: Props) {
                 <h3>Experiences</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col justify-around px-3">
+                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
                   <li>
-                    Internship Developer at Akiya Research(2023,Jan - 2023,Apr)
+                    Junior Developer at Akiya Research(2023,Jan - 2024,Jan)
                   </li>
                   <li>
-                    Junior Developer at Akiya Research(2023,Apr - Present)
+                    Frontend-Developer at{" "}
+                    <a href="pleasuredomes.ai">pleasuredomes.ai</a>(2024, <br />
+                    Apr - Present)
                   </li>
                 </ul>
               </div>

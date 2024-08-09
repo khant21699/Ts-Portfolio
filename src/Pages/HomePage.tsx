@@ -35,9 +35,9 @@ export default function HomePage({ setCurrentPage }: Props) {
                   const contact = document.getElementById(Pages.Contact);
                   contact?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px]"
+                className=" border-primary border-[1px] p-[10px] text-[20px] mt-[30px] w-[200px] after:absolute relative after:w-0 after:h-full hover:after:w-full  after:transition-all after:bg-primary after:left-0 after:top-0"
               >
-                Contact ME!!
+                <span className="relative z-20"> Contact ME!!</span>
               </button>
             </div>
           </div>

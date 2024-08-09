@@ -17,8 +17,8 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
 
   return (
     <div
-      className={` z-10 bg-body w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-[10%] items-center  ${
-        !topOfPage && " shadow-sm shadow-primary"
+      className={` z-20  w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-[10%] items-center  ${
+        !topOfPage ? " shadow-sm shadow-primary bg-black" : "bg-transparent"
       }`}
     >
       {/* brand */}
