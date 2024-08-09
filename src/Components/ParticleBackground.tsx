@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import type { Container, Engine } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim"; // Ensure the "@tsparticles/slim" package is installed
+import { loadSlim } from "@tsparticles/slim";
 
-const ParticleBackground = () => {
+const ParticleBackground = React.memo(() => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ParticleBackground = () => {
     <>
       {init && (
         <Particles
-          className=" !w-full !h-full block z-10"
+          className="!w-full !h-full block z-10"
           id="tsparticles"
           particlesLoaded={particlesLoaded}
           options={{
@@ -56,7 +56,7 @@ const ParticleBackground = () => {
                   quantity: 4,
                 },
                 repulse: {
-                  distance: 200,
+                  distance: 150, // Use "distance" instead of "radius"
                   duration: 0.4,
                 },
               },
@@ -64,6 +64,13 @@ const ParticleBackground = () => {
             particles: {
               color: {
                 value: "#6EACDA",
+              },
+              links: {
+                color: "#ffffff",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
               },
               move: {
                 direction: "none",
@@ -78,18 +85,18 @@ const ParticleBackground = () => {
               number: {
                 density: {
                   enable: true,
-                  area: 100,
+                  area: 600,
                 },
-                value: 150,
+                value: 300,
               },
               opacity: {
-                value: 1,
+                value: 0.75,
               },
               shape: {
-                type: "square",
+                type: "triangle",
               },
               size: {
-                value: { min: 1, max: 5 },
+                value: { min: 2, max: 3 },
               },
             },
             detectRetina: true,
@@ -98,6 +105,6 @@ const ParticleBackground = () => {
       )}
     </>
   );
-};
+});
 
 export default ParticleBackground;

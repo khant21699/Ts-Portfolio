@@ -23,8 +23,13 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
     >
       {/* brand */}
       <div className=" text-white font-firaCode text-[15px]">
-        <h1>
-          KHANT<span className="text-primary text-[10px]">.dev</span>
+        <h1
+          className=" cursor-pointer text-3xl"
+          onClick={(e) => {
+            scrollFun(Pages.Home);
+          }}
+        >
+          KHANT<span className="text-primary text-sm">.dev</span>
         </h1>
       </div>
       {/* nav */}

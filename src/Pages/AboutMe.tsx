@@ -27,7 +27,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
           onViewportEnter={() => setCurrentPage(Pages.AboutMe)}
         >
           {/* text */}
-          <div className=" h-auto mb-10 mb:mb-0 mb:min-h-[60vh] text-secondary font-firaCode text-[20px] w-full mb:w-1/2  relative">
+          <div className=" h-auto mb-10 mb:mb-0 mb:min-h-[60vh] text-white font-firaCode text-[20px] w-full mb:w-1/2  relative">
             <img
               className=" absolute w-[100px] h-[100px] bottom-0 z-1] hidden"
               src={BG}
@@ -83,12 +83,12 @@ export default function AboutMe({ setCurrentPage }: Props) {
 
           <div className=" h-auto min-h-[60vh] w-full mb:w-1/2 flex flex-wrap justify-center gap-5">
             {/* skills */}
-            <div className="  border-secondary border-[1px] w-[250px] flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-secondary flex justify-center items-center font-firaCode text-secondary">
+            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
+              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
                 <h3>Skills</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
+                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
                   <li>Html</li>
                   <li>Css</li>
                   <li>Javascript</li>
@@ -101,12 +101,12 @@ export default function AboutMe({ setCurrentPage }: Props) {
               </div>
             </div>
             {/* Edu */}
-            <div className="  border-secondary border-[1px] w-[250px] flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-secondary flex justify-center items-center font-firaCode text-secondary">
+            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
+              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
                 <h3>Education</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
+                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
                   <li>HND in Software Engnieering</li>
                   <li>
                     BSc(Hons) in Computing (University of Gloucestershire)
@@ -115,19 +115,25 @@ export default function AboutMe({ setCurrentPage }: Props) {
               </div>
             </div>
             {/* Exp */}
-            <div className="  border-secondary border-[1px] w-[250px] flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-secondary flex justify-center items-center font-firaCode text-secondary">
+            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
+              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
                 <h3>Experiences</h3>
               </div>
               <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-secondary font-firaCode flex flex-col gap-2 px-3">
+                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
                   <li>
                     Junior Developer at Akiya Research <br />
                     (2023,Jan - 2024,Jan)
                   </li>
                   <li>
                     Frontend-Developer at{" "}
-                    <a href="pleasuredomes.ai">pleasuredomes.ai</a> <br />
+                    <a
+                      className=" text-primary"
+                      href="https://www.pleasuredomes.ai/"
+                    >
+                      pleasuredomes.ai
+                    </a>{" "}
+                    <br />
                     (2024, Apr - Present)
                   </li>
                 </ul>
