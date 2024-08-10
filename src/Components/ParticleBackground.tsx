@@ -85,7 +85,7 @@ const ParticleBackground = React.memo(() => {
               number: {
                 density: {
                   enable: true,
-                  area: 600,
+                  area: 800,
                 },
                 value: 300,
               },

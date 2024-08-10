@@ -91,7 +91,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
           !showMbNav ? "right-[-100%]" : "right-0"
         } top-0 justify-center flex items-center border-primary border-l bg-bg z-10 transition-all `}
       >
-        <div className="h-3/5 before:content-Rectangle before:absolute before:left-10 before:bottom-56 after:content-graphic after:absolute after:right-5 after:bottom-20">
+        <div className="h-3/5 before:content-Rectangle before:absolute before:left-10 before:bottom-56 ">
           <div className=" absolute top-10 right-[50px]">
             <RxCross1
               color="#86E3F8"
