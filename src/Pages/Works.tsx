@@ -29,7 +29,7 @@ export default function Works({ setCurrentPage }: Props) {
       </div>
       {/* works */}
       <motion.div
-        className="w-full justify-center grid grid-cols-1 md:grid-cols-2 gap-4 "
+        className="w-full justify-center grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8"
         onViewportEnter={() => {
           setCurrentPage(Pages.Works);
         }}
@@ -64,14 +64,14 @@ export default function Works({ setCurrentPage }: Props) {
         />
         <WorksCards
           techs={["Next.js", "Tailwind CSS", "themealdb.com API"]}
-          title="NextJs Food Recipes App"
+          title="Food Recipes App"
           live="https://food-recipes-nextjs-sux3.vercel.app/"
           imgSrc={Food}
           git="https://github.com/khant21699/food-recipes-nextjs"
         />
         <WorksCards
           techs={["Next.js", "Typescript", "Tailwind CSS", "MediaStack API"]}
-          title="NextJs News App"
+          title="News App"
           live="https://live-news-next-app.vercel.app/"
           imgSrc={News}
           git="https://github.com/khant21699/NewsApp-Next"

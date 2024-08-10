@@ -37,19 +37,21 @@ export default function WorksCards({ title, techs, imgSrc, live, git }: Props) {
         alt={imgSrc}
       />
       <div className=" w-full h-full flex justify-center items-center gap-4 text-center backdrop-blur-sm bg-bg bg-opacity-70 transition-opacity relative z-20 opacity-0 group-hover:opacity-100">
-        <div className=" flex flex-col h-full w-full gap-4 justify-center p-3">
-          <p className=" text-2xl font-bold text-primary">{title}</p>
+        <div className=" flex flex-col h-full w-full gap-2 md:gap-7 justify-center p-3">
+          <p className=" text-xl md:text-2xl font-bold text-primary">{title}</p>
           <ul className=" flex gap-1 flex-wrap justify-center">
             {techs.map((t) => {
               return (
-                <li className=" text-base p-2 border-secondary border">{t}</li>
+                <li className=" text-sm md:text-base p-2 border-secondary border">
+                  {t}
+                </li>
               );
             })}
           </ul>
           <div className=" flex justify-center gap-3 items-center">
             {live && (
               <button
-                className=" flex text-lg justify-center items-center gap-1 p-2 border-primary border"
+                className=" flex text-base md:text-lg justify-center items-center gap-1 p-2 border-primary border"
                 onClick={() => openLinkInNewTab("live")}
               >
                 <CgMediaLive />
@@ -58,7 +60,7 @@ export default function WorksCards({ title, techs, imgSrc, live, git }: Props) {
             )}
             {git && (
               <button
-                className=" flex text-lg justify-center items-center gap-1 p-2 border-primary border"
+                className=" flex text-base md:text-lg justify-center items-center gap-1 p-2 border-primary border"
                 onClick={() => openLinkInNewTab("git")}
               >
                 <AiFillGithub />

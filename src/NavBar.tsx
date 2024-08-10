@@ -94,7 +94,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
         <div className="h-3/5 before:content-Rectangle before:absolute before:left-10 before:bottom-56 after:content-graphic after:absolute after:right-5 after:bottom-20">
           <div className=" absolute top-10 right-[50px]">
             <RxCross1
-              color="#c778dd"
+              color="#86E3F8"
               className=" w-[20px] h-[20px]"
               onClick={mobileNavHandler}
             />
