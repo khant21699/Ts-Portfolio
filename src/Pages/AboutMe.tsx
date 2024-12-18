@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Pages } from "../shared";
 import BG from "../assets/BG.png";
 import Dots from "../assets/Dots.png";
+import Capsule from "../Components/capsule/Capsule";
 
 type Props = {
   setCurrentPage: (value: Pages) => void;
@@ -11,7 +12,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
   return (
     <section
       id={Pages.AboutMe}
-      className="min-h-[100vh] w-full flex flex-col items-center pt-[150px] mb:mt-0 mb-10"
+      className=" w-full flex flex-col items-center pt-[150px] mb:mt-0 mb-10"
     >
       <div className="w-full  gap-10">
         {/* header */}
@@ -23,11 +24,11 @@ export default function AboutMe({ setCurrentPage }: Props) {
         </div>
         {/* content */}
         <motion.div
-          className="h-auto mb:flex gap-5"
+          className="h-auto flex flex-col gap-5"
           onViewportEnter={() => setCurrentPage(Pages.AboutMe)}
         >
           {/* text */}
-          <div className=" h-auto mb-10 mb:mb-0 mb:min-h-[60vh] text-white font-firaCode text-[20px] w-full mb:w-1/2  relative">
+          <div className=" h-auto mb-10 mb:mb-0 text-white font-firaCode text-[20px] w-full relative">
             <img
               className=" absolute w-[100px] h-[100px] bottom-0 z-1] hidden"
               src={BG}
@@ -60,7 +61,8 @@ export default function AboutMe({ setCurrentPage }: Props) {
                 visible: { opacity: 1, x: 0 },
               }}
             >
-              I am a Frontend developer from Myanmar specialized in React.js and
+              I am a Frontend developer from Myanmar, currently based in
+              Bangkok, Thailand, specialized in React.js, Next.js, Vue.js and
               typescript. I develop responsive and interactive websites from
               scratch and raise them into user-firendly web experiences.
             </motion.p>
@@ -81,60 +83,69 @@ export default function AboutMe({ setCurrentPage }: Props) {
             </motion.p>
           </div>
 
-          <div className=" h-auto min-h-[60vh] w-full mb:w-1/2 flex flex-wrap justify-center gap-5">
+          <div className=" h-auto w-full grid grid-cols-3 max-md:grid-cols-1 gap-5">
             {/* skills */}
-            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
+            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
               <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
                 <h3>Skills</h3>
               </div>
-              <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
-                  <li>Html</li>
-                  <li>Css</li>
-                  <li>Javascript</li>
-                  <li>Typescript</li>
-                  <li>React.js</li>
-                  <li>Vue.js</li>
-                  <li>Tailwind Css</li>
-                  <li>Redux</li>
+              <div className=" flex-1 pt-2 min-h-[200px]">
+                <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap gap-2 px-3">
+                  <li className="w-fit h-fit">
+                    <Capsule text="Html" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Css" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Javascript" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Typescript" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="React.js" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Vue.js" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Tailwind Css" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="Redux" />
+                  </li>
                 </ul>
               </div>
             </div>
             {/* Edu */}
-            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
+            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
+              <div className=" h-[50px] border-b-[1px] border-primary   flex justify-center items-center font-firaCode text-white">
                 <h3>Education</h3>
               </div>
-              <div className=" h-[calc(100%-50px)] min-h-[200px]">
-                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
-                  <li>HND in Software Engnieering</li>
-                  <li>
-                    BSc(Hons) in Computing (University of Gloucestershire)
+              <div className=" flex-1 pt-2 min-h-[200px]">
+                <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap  gap-2 px-3">
+                  <li className="w-fit h-fit">
+                    <Capsule text="HND in Software Engnieering" />
+                  </li>
+                  <li className="w-fit h-fit">
+                    <Capsule text="BSc(Hons) in Computing (University of Gloucestershire)" />
                   </li>
                 </ul>
               </div>
             </div>
             {/* Exp */}
-            <div className="  border-primary border-[1px] w-[250px] flex flex-col">
+            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
               <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
                 <h3>Experiences</h3>
               </div>
-              <div className=" h-[calc(100%-50px)] min-h-[200px]">
+              <div className=" flex-1 pt-2 min-h-[200px]">
                 <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
-                  <li>
-                    Junior Developer at Akiya Research <br />
-                    (2023,Jan - 2024,Jan)
+                  <li className="w-fit h-fit">
+                    <Capsule text="Junior Developer at Akiya Research (2023,Jan - 2024,Jan)" />
                   </li>
-                  <li>
-                    Frontend-Developer at{" "}
-                    <a
-                      className=" text-primary"
-                      href="https://www.pleasuredomes.ai/"
-                    >
-                      pleasuredomes.ai
-                    </a>{" "}
-                    <br />
-                    (2024, Apr - Present)
+                  <li className="w-fit h-fit">
+                    <Capsule text="Frontend-Developer at pleasuredomes.ai (2024, Apr - Present)" />
                   </li>
                 </ul>
               </div>

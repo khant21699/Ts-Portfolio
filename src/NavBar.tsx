@@ -17,7 +17,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
 
   return (
     <div
-      className={` z-20  w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-[10%] items-center  ${
+      className={` z-50  w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-[10%] items-center  ${
         !topOfPage ? " shadow-sm shadow-primary bg-bg" : "bg-transparent"
       }`}
     >
@@ -87,7 +87,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
       </div>
       <div
         id="mbNav"
-        className={`mb:hidden h-[100vh] w-[80vw] fixed ${
+        className={`mb:hidden h-[100vh] w-[300px] z-50 fixed ${
           !showMbNav ? "right-[-100%]" : "right-0"
         } top-0 justify-center flex items-center border-primary border-l bg-bg z-10 transition-all `}
       >

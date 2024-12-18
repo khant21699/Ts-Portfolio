@@ -10,7 +10,7 @@ type Props = {
 
 export default function Contact({ setCurrentPage }: Props) {
   return (
-    <section id={Pages.Contact} className=" min-h-[100vh] pt-[200px] mb:pb-5 ">
+    <section id={Pages.Contact} className="  pb-20 ">
       <div className="mb-16 flex items-center gap-10">
         <h3 className="text-[20px] text-white font-firaCode">
           <span className="text-primary">#</span>Contact
