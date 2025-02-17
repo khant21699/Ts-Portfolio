@@ -141,7 +141,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
                   visible: { opacity: 1, x: 0 },
                 }}
               >
-                <EducationItem text="HND in Software Engnieering" />
+                <EducationItem text="BSc(Hons) in Computing (University of Gloucestershire)" />
               </motion.div>
               <motion.div
                 initial="hidden"
@@ -152,7 +152,18 @@ export default function AboutMe({ setCurrentPage }: Props) {
                   visible: { opacity: 1, x: 0 },
                 }}
               >
-                <EducationItem text="BSc(Hons) in Computing (University of Gloucestershire)" />
+                <EducationItem text="Higher National Diploma in Software Engnieering (Pearson)" />
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.3, delay: 0.3 }}
+                variants={{
+                  hidden: { opacity: 0, x: -50 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
+                <EducationItem text="META Frontend Developer Professional Certificate (Coursera)" />
               </motion.div>
             </ul>
           </motion.div>
