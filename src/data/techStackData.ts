@@ -2,12 +2,13 @@ import {
   FaHtml5,
   FaCss3Alt,
   FaJs,
-  FaReact,
   FaVuejs,
   FaBootstrap,
   FaGitAlt,
   FaFigma,
 } from "react-icons/fa";
+import { RiReactjsFill } from "react-icons/ri";
+import { TbBrandNextjs } from "react-icons/tb";
 import { SiTypescript, SiTailwindcss, SiRedux } from "react-icons/si";
 import { IconType } from "react-icons";
 
@@ -23,7 +24,8 @@ export const techStackData: TechStackItem[] = [
   { text: "TypeScript", Icon: SiTypescript },
   { text: "Bootstrap", Icon: FaBootstrap },
   { text: "Tailwind CSS", Icon: SiTailwindcss },
-  { text: "React.js", Icon: FaReact },
+  { text: "React.js", Icon: RiReactjsFill },
+  { text: "Next.js", Icon: TbBrandNextjs },
   { text: "Vue.js", Icon: FaVuejs },
   { text: "Redux", Icon: SiRedux },
   { text: "Git", Icon: FaGitAlt },
