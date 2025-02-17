@@ -10,15 +10,12 @@ type Props = {
 
 export default function HomePage({ setCurrentPage }: Props) {
   return (
-    <motion.section
-      id={Pages.Home}
-      className=" pt-[150px] h-auto min-h-[100vh] w-full"
-    >
+    <motion.section id={Pages.Home} className=" pt-[150px] h-auto w-full">
       <motion.div onViewportEnter={() => setCurrentPage(Pages.Home)}>
         {/* banner */}
-        <div className="w-full h-auto block mb:flex">
+        <div className="w-full h-auto gap-5 max-md:flex-col flex">
           {/* text */}
-          <div className=" h-[50vh] w-full mb:w-3/5 text-white font-firaCode text-[30px] ">
+          <div className=" flex-1 text-white text-[30px] font-firaCode">
             <div className="flex flex-col justify-center h-full">
               <p>
                 Hello I'm <span className=" text-primary">Khant</span>
@@ -43,14 +40,14 @@ export default function HomePage({ setCurrentPage }: Props) {
           </div>
 
           {/* photo */}
-          <div className="w-full h-[400px] mb:h-[50vh] mb:w-2/5 object-contain mb:mt-0 mt-[50px] flex justify-center items-center relative mb:block">
+          <div className=" w-96 max-md:w-full h-auto">
             <img
               src={BG}
               alt=""
               className="w-2/5 h-2/5 hidden absolute z-1 mb:top-[70px] top-[-30px] left-0"
             />
             <img
-              className="mb:w-full mb:h-full z-3 relative   w-[300px]"
+              className="mb:w-full h-auto z-3 relative  max-md:w-full object-cover object-top"
               src={Avatar}
               alt=""
             />

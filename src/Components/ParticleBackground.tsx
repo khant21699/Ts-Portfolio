@@ -6,6 +6,7 @@ import { loadSlim } from "@tsparticles/slim";
 
 const ParticleBackground = React.memo(() => {
   const [init, setInit] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const initParticles = async (engine: Engine) => {
@@ -17,13 +18,18 @@ const ParticleBackground = React.memo(() => {
         setInit(true);
       })
       .catch((error) => {
+        setError(error.message);
         console.error("Error initializing particles engine:", error);
       });
   }, []);
 
-  const particlesLoaded = useCallback((container: Container) => {
-    console.log(container);
+  const particlesLoaded = useCallback((_container: Container) => {
+    // Container loaded successfully
   }, []);
+
+  if (error) {
+    return null; // Or return a fallback UI
+  }
 
   return (
     <>
@@ -38,7 +44,7 @@ const ParticleBackground = React.memo(() => {
                 value: "#021526",
               },
             },
-            fpsLimit: 60,
+            fpsLimit: 120,
             interactivity: {
               events: {
                 onClick: {
@@ -47,17 +53,19 @@ const ParticleBackground = React.memo(() => {
                 },
                 onHover: {
                   enable: true,
-                  mode: "repulse",
+                  mode: "grab",
                 },
                 resize: true,
               },
               modes: {
                 push: {
-                  quantity: 4,
+                  quantity: 6,
                 },
-                repulse: {
-                  distance: 150, // Use "distance" instead of "radius"
-                  duration: 0.4,
+                grab: {
+                  distance: 140,
+                  links: {
+                    opacity: 0.5,
+                  },
                 },
               },
             },
@@ -66,11 +74,14 @@ const ParticleBackground = React.memo(() => {
                 value: "#6EACDA",
               },
               links: {
-                color: "#ffffff",
+                color: "#6EACDA",
                 distance: 150,
-                enable: true,
-                opacity: 0.5,
+                enable: false,
+                opacity: 0.3,
                 width: 1,
+              },
+              collisions: {
+                enable: true,
               },
               move: {
                 direction: "none",
@@ -79,7 +90,7 @@ const ParticleBackground = React.memo(() => {
                   default: "bounce",
                 },
                 random: false,
-                speed: 4.5,
+                speed: 2,
                 straight: false,
               },
               number: {
@@ -87,16 +98,21 @@ const ParticleBackground = React.memo(() => {
                   enable: true,
                   area: 800,
                 },
-                value: 300,
+                value: 80,
               },
               opacity: {
-                value: 0.75,
+                value: 0.7,
+                animation: {
+                  enable: true,
+                  speed: 1,
+                  minimumValue: 0.4,
+                },
               },
               shape: {
-                type: "triangle",
+                type: "circle",
               },
               size: {
-                value: { min: 2, max: 3 },
+                value: { min: 1, max: 3 },
               },
             },
             detectRetina: true,
@@ -106,5 +122,7 @@ const ParticleBackground = React.memo(() => {
     </>
   );
 });
+
+ParticleBackground.displayName = "ParticleBackground";
 
 export default ParticleBackground;

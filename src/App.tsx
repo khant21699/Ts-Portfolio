@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <div className="App w-full px-[10%] overflow-x-hidden relative">
+      <div className="App w-full max-w-screen-xl mx-auto px-5  overflow-x-hidden relative">
         <div className="absolute inset-0 z-0">
           <ParticleBackground />
         </div>

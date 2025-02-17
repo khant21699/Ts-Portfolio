@@ -3,6 +3,10 @@ import { Pages } from "../shared";
 import BG from "../assets/BG.png";
 import Dots from "../assets/Dots.png";
 import Capsule from "../Components/capsule/Capsule";
+import { techStackData } from "../data/techStackData";
+import TechStackItem from "../Components/TechStack/TechStackItem";
+import EducationItem from "../Components/Education/EducationItem";
+import ExperienceItem from "../Components/Experience/ExperienceItem";
 
 type Props = {
   setCurrentPage: (value: Pages) => void;
@@ -83,74 +87,114 @@ export default function AboutMe({ setCurrentPage }: Props) {
             </motion.p>
           </div>
 
-          <div className=" h-auto w-full grid grid-cols-3 max-md:grid-cols-1 gap-5">
-            {/* skills */}
-            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
-                <h3>Skills</h3>
-              </div>
-              <div className=" flex-1 pt-2 min-h-[200px]">
-                <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap gap-2 px-3">
-                  <li className="w-fit h-fit">
-                    <Capsule text="Html" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Css" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Javascript" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Typescript" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="React.js" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Vue.js" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Tailwind Css" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Redux" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* Edu */}
-            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-primary   flex justify-center items-center font-firaCode text-white">
-                <h3>Education</h3>
-              </div>
-              <div className=" flex-1 pt-2 min-h-[200px]">
-                <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap  gap-2 px-3">
-                  <li className="w-fit h-fit">
-                    <Capsule text="HND in Software Engnieering" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="BSc(Hons) in Computing (University of Gloucestershire)" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-            {/* Exp */}
-            <div className="  border-primary border-[1px] w-full  pb-2 flex flex-col">
-              <div className=" h-[50px] border-b-[1px] border-primary flex justify-center items-center font-firaCode text-white">
-                <h3>Experiences</h3>
-              </div>
-              <div className=" flex-1 pt-2 min-h-[200px]">
-                <ul className="w-full h-full list-none text-white font-firaCode flex flex-col gap-2 px-3">
-                  <li className="w-fit h-fit">
-                    <Capsule text="Junior Developer at Akiya Research (2023,Jan - 2024,Jan)" />
-                  </li>
-                  <li className="w-fit h-fit">
-                    <Capsule text="Frontend-Developer at pleasuredomes.ai (2024, Apr - Present)" />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            className="w-full flex flex-col gap-5"
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 0.6 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <h2 className="text-primary font-firaCode text-[20px]">
+              My Tech Stack
+            </h2>
+            <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap gap-2 ">
+              {techStackData.map((tech, index) => (
+                <motion.div
+                  key={tech.text}
+                  initial="hidden"
+                  whileInView="visible"
+                  transition={{ duration: 0.3, delay: 0.1 * index }}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.8 },
+                    visible: { opacity: 1, scale: 1 },
+                  }}
+                >
+                  <TechStackItem text={tech.text} Icon={tech.Icon} />
+                </motion.div>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            className="w-full flex flex-col gap-5"
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 0.8 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <h2 className="text-primary font-firaCode text-[20px]">
+              Education
+            </h2>
+            <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap gap-2">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.3, delay: 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, x: -50 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
+                <EducationItem text="HND in Software Engnieering" />
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.3, delay: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0, x: -50 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
+                <EducationItem text="BSc(Hons) in Computing (University of Gloucestershire)" />
+              </motion.div>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            className="w-full flex flex-col gap-5"
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 1 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <h2 className="text-primary font-firaCode text-[20px]">
+              Experience
+            </h2>
+            <ul className="w-full h-full list-none text-white font-firaCode flex flex-wrap gap-2">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.3, delay: 0.1 }}
+                variants={{
+                  hidden: { opacity: 0, x: -50 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
+                <ExperienceItem text="Junior Developer at Akiya Research (2023,Jan - 2024,Jan)" />
+              </motion.div>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 0.3, delay: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0, x: -50 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+              >
+                <ExperienceItem text="Frontend-Developer at pleasuredomes.ai (2024, Apr - Present)" />
+              </motion.div>
+            </ul>
+          </motion.div>
         </motion.div>
       </div>
     </section>
