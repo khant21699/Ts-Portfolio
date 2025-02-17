@@ -32,14 +32,14 @@ export default function AboutMe({ setCurrentPage }: Props) {
           onViewportEnter={() => setCurrentPage(Pages.AboutMe)}
         >
           {/* text */}
-          <div className=" h-auto mb-10 mb:mb-0 text-white font-firaCode text-[20px] w-full relative">
+          <div className=" h-auto mb-10 mb:mb-0 text-white font-firaCode text-[20px] max-md:text-lg w-full relative">
             <img
-              className=" absolute w-[100px] h-[100px] bottom-0 z-1] hidden"
+              className=" absolute w-[100px] max-md:hidden h-[100px] bottom-0  hidden"
               src={BG}
               alt=""
             />
             <img
-              className=" absolute w-[100px] h-[100px] bottom-0 z-1 hidden mb:block right-0"
+              className=" absolute w-[100px] max-md:!hidden h-[100px] bottom-0 z-1 hidden  right-0"
               src={Dots}
               alt=""
             />

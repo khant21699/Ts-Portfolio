@@ -13,7 +13,7 @@ export default function HomePage({ setCurrentPage }: Props) {
     <motion.section id={Pages.Home} className=" pt-[150px] h-auto w-full">
       <motion.div onViewportEnter={() => setCurrentPage(Pages.Home)}>
         {/* banner */}
-        <div className="w-full h-auto gap-5 max-md:flex-col flex">
+        <div className="w-full relative h-auto gap-5 max-md:flex-col flex">
           {/* text */}
           <div className=" flex-1 text-white text-[30px] font-firaCode">
             <div className="flex flex-col justify-center h-full">
@@ -42,25 +42,15 @@ export default function HomePage({ setCurrentPage }: Props) {
           {/* photo */}
           <div className=" w-96 max-md:w-full h-auto">
             <img
-              src={BG}
-              alt=""
-              className="w-2/5 h-2/5 hidden absolute z-1 mb:top-[70px] top-[-30px] left-0"
-            />
-            <img
               className="mb:w-full h-auto z-3 relative  max-md:w-full object-cover object-top"
               src={Avatar}
               alt=""
-            />
-            <img
-              src={Dots}
-              alt=""
-              className="w-1/5 h-1/5 absolute z-1 top-[60%] right-[20px]"
             />
           </div>
         </div>
         {/* quote */}
         <div className="w-full flex items-center justify-center min-h-[20vh] mt-[30px]">
-          <div className=" text-[35px] text-primary font-firaCode border-secondary border-[1px] p-[20px]">
+          <div className=" text-[35px] max-md:text-[20px] text-primary font-firaCode border-secondary border-[1px] p-[20px]">
             "Make it work, make it right, make it fast"
           </div>
         </div>
