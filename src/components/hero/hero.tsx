@@ -1,4 +1,4 @@
-import profile from "../../assets/profile.png";
+import profile from "../../assets/profile-hero.png";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
