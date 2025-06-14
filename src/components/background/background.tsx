@@ -75,7 +75,7 @@ function Background() {
           gridTemplateRows: `repeat(${grid.rows}, 70px)`,
           gridTemplateColumns: `repeat(${grid.cols}, 70px)`,
           transform: isMobile
-            ? "rotateX(45deg) rotateZ(45deg) scale(2) translate(-40%, -0%)"
+            ? "rotateX(45deg) rotateZ(45deg) scale(2) translate(-0%, -0%)"
             : "rotateX(45deg) rotateZ(45deg) scale(2) translate(-0%, -0%)",
           transformStyle: "preserve-3d",
           willChange: "transform",
