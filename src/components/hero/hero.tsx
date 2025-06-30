@@ -74,7 +74,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen max-w-screen-lg mx-auto max-md:pt-[150px] flex items-center justify-center w-full *:pointer-events-none bg-transparent"
+      className="min-h-screen max-w-screen-lg mx-auto max-md:pt-[150px] flex items-center justify-center w-full bg-transparent"
     >
       <div className="container mx-auto px-4">
         <div className="w-full relative h-auto gap-8 grid grid-cols-1 md:grid-cols-2 items-center">
@@ -92,14 +92,9 @@ const Hero = () => {
                 className="text-4xl md:text-5xl font-bold"
               >
                 Hello I'm{" "}
-                <motion.span
-                  className="text-secondary text-shadow-2xs text-shadow-primary inline-block"
-                  variants={floatingAnimation}
-                  initial="initial"
-                  animate="animate"
-                >
+                <span className="text-secondary text-shadow-2xs text-shadow-primary inline-block">
                   Khant
-                </motion.span>
+                </span>
               </motion.h1>
               <motion.h2
                 custom={2}
@@ -128,7 +123,7 @@ const Hero = () => {
                 initial="initial"
                 whileHover="hover"
                 whileTap="tap"
-                className="group relative cursor-pointer inline-flex items-center pointer-events-auto justify-center px-8 py-3 font-bold tracking-wide text-white transition-all duration-200 ease-in-out transform border-2 border-accent hover:bg-accent hover:text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary w-fit"
+                className="group rounded-md relative cursor-pointer inline-flex items-center pointer-events-auto justify-center px-8 py-3 font-bold tracking-wide text-white transition-all duration-200 ease-in-out transform border-2 border-accent hover:bg-accent hover:text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-primary w-fit"
               >
                 <motion.span
                   initial={{ x: -20, opacity: 0 }}
@@ -177,7 +172,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 1.5,
+            delay: 0.5,
             duration: 0.8,
             type: "spring",
             stiffness: 100,
@@ -188,7 +183,7 @@ const Hero = () => {
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2, duration: 1 }}
+              transition={{ delay: 1, duration: 1 }}
             >
               "Make it work, make it right, make it fast"
             </motion.span>

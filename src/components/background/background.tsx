@@ -66,7 +66,7 @@ function Background() {
   }, [grid.rows, grid.cols, colors]);
 
   return (
-    <div className="fixed inset-0 bg-primary overflow-hidden perspective-[1000px]">
+    <div className="fixed inset-0 -z-10 bg-primary overflow-hidden perspective-[1000px]">
       <div
         className={`grid w-[150%] h-[150%] absolute -left-1/2 -top-1/2 transform-gpu transition-opacity duration-500 ${
           isVisible ? "opacity-100" : "opacity-0"
