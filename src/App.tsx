@@ -1,58 +1,43 @@
-import { useEffect, useState } from "react";
+import "./App.css";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import NavBar from "./NavBar";
-import HomePage from "./Pages/HomePage";
+import Hero from "./sections/Hero";
+import About from "./sections/About";
+import Projects from "./sections/Projects";
+import Contact from "./sections/Contact";
 import { Pages } from "./shared";
-import AboutMe from "./Pages/AboutMe";
-import Works from "./Pages/Works";
-import Contact from "./Pages/Contact";
-import Footer from "./Pages/Footer";
-import ParticleBackground from "./Components/ParticleBackground";
 
 function App() {
-  const [topOfPage, setTopofPage] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<Pages>(Pages.Home);
-
-  const handleScroll = () => {
-    if (window.scrollY < 100) {
-      setTopofPage(true);
-    } else if (window.scrollY >= 100) {
-      setTopofPage(false);
-    }
-  };
-
-  const scrollFun = (page: Pages) => {
-    const scrollPage = document.getElementById(page);
-    if (scrollPage !== null) {
-      scrollPage.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
   useEffect(() => {
+    const handleScroll = () => setIsTopOfPage(window.scrollY === 0);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (page: Pages) => {
+    const element = document.getElementById(page);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <>
-      <div className="App w-full max-w-screen-xl mx-auto px-5  overflow-x-hidden relative">
-        <div className="absolute inset-0 z-0">
-          <ParticleBackground />
-        </div>
-        <NavBar
-          topOfPage={topOfPage}
-          currentPage={currentPage}
-          scrollFun={scrollFun}
-        />
-        {/* HomePage */}
-        <div className="relative z-10">
-          <HomePage setCurrentPage={setCurrentPage} />
-          <AboutMe setCurrentPage={setCurrentPage} />
-          <Works setCurrentPage={setCurrentPage} />
-          <Contact setCurrentPage={setCurrentPage} />
-        </div>
-      </div>
-      <Footer />
-    </>
+    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+      <NavBar
+        topOfPage={isTopOfPage}
+        currentPage={currentPage}
+        scrollFun={scrollToSection}
+      />
+
+      <main className="relative">
+        <Hero setCurrentPage={setCurrentPage} />
+        <About setCurrentPage={setCurrentPage} />
+        <Projects setCurrentPage={setCurrentPage} />
+        <Contact setCurrentPage={setCurrentPage} />
+      </main>
+    </div>
   );
 }
 

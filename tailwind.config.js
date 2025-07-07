@@ -4,21 +4,40 @@ export default {
   theme: {
     extend: {
       colors: {
-        body: "#282c33",
-        primary: "#86E3F8",
-        secondary: "#abb2bf",
-        bg: "#021526",
-      },
-      screens: {
-        mb: "900px",
+        gray: {
+          50: "#f9fafb",
+          100: "#f3f4f6",
+          200: "#e5e7eb",
+          300: "#d1d5db",
+          400: "#9ca3af",
+          500: "#6b7280",
+          600: "#4b5563",
+          700: "#374151",
+          800: "#1f2937",
+          900: "#111827",
+        },
+        blue: {
+          400: "#60a5fa",
+          500: "#3b82f6",
+        },
       },
       fontFamily: {
-        firaCode: ["Fira Code", "monospace"],
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+        mono: ["Fira Code", "monospace"],
       },
-      content: {
-        dots: "url('./assets/Dots.png')",
-        graphic: "url('./assets/BG.png')",
-        Rectangle: "url('./assets/Rectangle.png')",
+      animation: {
+        "fade-in": "fadeIn 0.8s ease-out",
+        "slide-up": "slideUp 0.8s ease-out",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
     },
   },

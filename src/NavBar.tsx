@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Pages } from "./shared";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Props = {
   topOfPage?: boolean;
@@ -10,145 +11,148 @@ type Props = {
 
 export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
   const [showMbNav, setShowMbNav] = useState<boolean>(false);
-  const mobileNavHandler = (e: any) => {
-    e.preventDefault();
+
+  const toggleMobileNav = () => {
     setShowMbNav(!showMbNav);
   };
 
+  const handleNavClick = (page: Pages) => {
+    scrollFun(page);
+    setShowMbNav(false); // Close mobile nav when clicking
+  };
+
+  const navItems = [
+    { page: Pages.Home, label: "Home" },
+    { page: Pages.AboutMe, label: "About" },
+    { page: Pages.Works, label: "Work" },
+    { page: Pages.Contact, label: "Contact" },
+  ];
+
   return (
-    <div
-      className={` z-50  w-[100vw] h-[70px] flex justify-between fixed top-0 left-0 px-5 items-center  ${
-        !topOfPage ? " shadow-sm shadow-primary bg-bg" : "bg-transparent"
-      }`}
-    >
-      {/* brand */}
-      <div className="flex justify-between gap-5 w-full max-w-screen-xl mx-auto">
-        <div className=" text-white font-firaCode text-[15px]">
-          <h1
-            className=" cursor-pointer text-3xl"
-            onClick={(e) => {
-              scrollFun(Pages.Home);
-            }}
-          >
-            KHANT<span className="text-primary text-sm">.dev</span>
-          </h1>
-        </div>
-        {/* nav */}
-        <div className=" hidden w-2/5 h-full mb:flex items-center">
-          <ul className="flex list-none text-white text-[20px] w-full justify-between gap-2">
-            <li
-              onClick={(e) => {
-                scrollFun(Pages.Home);
-              }}
-              className={`cursor-pointer ${
-                currentPage == Pages.Home ? " opacity-100" : " opacity-70"
-              }`}
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          !topOfPage
+            ? "bg-gray-900/90 backdrop-blur-lg border-b border-gray-800 shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            {/* Brand */}
+            <motion.div
+              className="text-2xl font-bold text-white cursor-pointer hover:text-blue-400 transition-colors duration-300"
+              onClick={() => handleNavClick(Pages.Home)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className=" text-primary">#</span>Home
-            </li>
-            <li
-              onClick={(e) => {
-                scrollFun(Pages.AboutMe);
-              }}
-              className={`cursor-pointer ${
-                currentPage == Pages.AboutMe ? " opacity-100" : " opacity-70"
-              }`}
-            >
-              <span className=" text-primary">#</span>AboutMe
-            </li>
-            <li
-              onClick={(e) => {
-                scrollFun(Pages.Works);
-              }}
-              className={`cursor-pointer ${
-                currentPage == Pages.Works ? " opacity-100" : " opacity-70"
-              }`}
-            >
-              <span className=" text-primary">#</span>Works
-            </li>
-            <li
-              onClick={(e) => {
-                scrollFun(Pages.Contact);
-              }}
-              className={`cursor-pointer ${
-                currentPage == Pages.Contact ? " opacity-100" : " opacity-70"
-              }`}
-            >
-              <span className=" text-primary">#</span>Contact
-            </li>
-          </ul>
-        </div>
-        {/* navMobile */}
-        <div className="w-[30px] h-[30px] mb:hidden ">
-          <RxHamburgerMenu
-            className="w-full h-full cursor-pointer"
-            color="white"
-            onClick={mobileNavHandler}
-          />
-        </div>
-        <div
-          id="mbNav"
-          className={`mb:hidden h-[100vh] w-[300px] z-50 fixed ${
-            !showMbNav ? "right-[-100%]" : "right-0"
-          } top-0 justify-center flex items-center border-primary border-l bg-bg z-10 transition-all `}
-        >
-          <div className="h-3/5 before:content-Rectangle before:absolute before:left-10 before:bottom-56 ">
-            <div className=" absolute top-10 right-[50px]">
-              <RxCross1
-                color="#86E3F8"
-                className=" w-[20px] h-[20px]"
-                onClick={mobileNavHandler}
-              />
+              KHANT<span className="text-blue-400 text-lg">.dev</span>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map(({ page, label }) => (
+                <motion.button
+                  key={page}
+                  onClick={() => handleNavClick(page)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                    currentPage === page
+                      ? "text-blue-400 bg-blue-400/10"
+                      : "text-gray-300 hover:text-blue-400 hover:bg-gray-800/50"
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="text-blue-400 mr-1">#</span>
+                  {label}
+                </motion.button>
+              ))}
             </div>
-            <ul className=" text-white  h-full flex-col items-center text-[25px] font-firaCode">
-              <li
-                onClick={(e) => {
-                  scrollFun(Pages.Home);
-                  mobileNavHandler(e);
-                }}
-                className={`cursor-pointer h-[50px] mb-[20px] ${
-                  currentPage == Pages.Home ? " opacity-100" : " opacity-70"
-                }`}
-              >
-                <span className=" text-primary">#</span>Home
-              </li>
-              <li
-                onClick={(e) => {
-                  scrollFun(Pages.AboutMe);
-                  mobileNavHandler(e);
-                }}
-                className={`cursor-pointer h-[50px] mb-[20px] ${
-                  currentPage == Pages.AboutMe ? " opacity-100" : " opacity-70"
-                }`}
-              >
-                <span className=" text-primary">#</span>AboutMe
-              </li>
-              <li
-                onClick={(e) => {
-                  scrollFun(Pages.Works);
-                  mobileNavHandler(e);
-                }}
-                className={`cursor-pointer h-[50px] mb-[20px] ${
-                  currentPage == Pages.Works ? " opacity-100" : " opacity-70"
-                }`}
-              >
-                <span className=" text-primary">#</span>Works
-              </li>
-              <li
-                onClick={(e) => {
-                  scrollFun(Pages.Contact);
-                  mobileNavHandler(e);
-                }}
-                className={`cursor-pointer h-[50px] mb-[20px] ${
-                  currentPage == Pages.Contact ? " opacity-100" : " opacity-70"
-                }`}
-              >
-                <span className=" text-primary">#</span>Contact
-              </li>
-            </ul>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              className="md:hidden w-10 h-10 flex items-center justify-center text-white hover:text-blue-400 transition-colors duration-300 rounded-lg hover:bg-gray-800/50"
+              onClick={toggleMobileNav}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <RxHamburgerMenu className="w-6 h-6" />
+            </motion.button>
           </div>
         </div>
-      </div>
-    </div>
+      </nav>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {showMbNav && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleMobileNav}
+            />
+
+            {/* Mobile Menu */}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-80 bg-gray-900/95 backdrop-blur-lg border-l border-gray-800 z-50 md:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+            >
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex justify-between items-center p-6 border-b border-gray-800">
+                  <div className="text-xl font-bold text-white">
+                    KHANT<span className="text-blue-400">.dev</span>
+                  </div>
+                  <motion.button
+                    onClick={toggleMobileNav}
+                    className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-300 rounded-lg hover:bg-gray-800/50"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <RxCross1 className="w-5 h-5" />
+                  </motion.button>
+                </div>
+
+                {/* Navigation Items */}
+                <div className="flex-1 flex flex-col justify-center px-6 space-y-2">
+                  {navItems.map(({ page, label }, index) => (
+                    <motion.button
+                      key={page}
+                      onClick={() => handleNavClick(page)}
+                      className={`text-left p-4 text-xl font-medium rounded-lg transition-all duration-300 ${
+                        currentPage === page
+                          ? "text-blue-400 bg-blue-400/10 border-l-4 border-blue-400"
+                          : "text-gray-300 hover:text-blue-400 hover:bg-gray-800/50 hover:translate-x-2"
+                      }`}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="text-blue-400 mr-2">#</span>
+                      {label}
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Footer */}
+                <div className="p-6 border-t border-gray-800">
+                  <p className="text-gray-400 text-sm text-center">
+                    Frontend Developer
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
