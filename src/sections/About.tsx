@@ -135,9 +135,12 @@ export default function About({ setCurrentPage }: Props) {
             </h3>
             <div className="space-y-4">
               <div className="p-4 bg-gray-800 rounded-lg border-l-4 border-blue-400">
-                <p className="text-gray-300 font-medium">Frontend Developer</p>
+                <p className="text-gray-300 font-medium">
+                  Senior Frontend Developer
+                </p>
                 <p className="text-sm text-gray-400">
-                  pleasuredomes.ai • Apr 2024 - Present
+                  CONCEPTS UNLIMITED PROJECT MANAGEMENT SERVICES • Apr 2024 -
+                  Present
                 </p>
               </div>
               <div className="p-4 bg-gray-800 rounded-lg border-l-4 border-blue-400">
