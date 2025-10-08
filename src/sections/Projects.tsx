@@ -32,59 +32,64 @@ const ProjectCard = ({
   index,
 }: ProjectCardProps) => (
   <motion.div
-    className="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 hover:border-blue-400 transition-all duration-300"
-    initial={{ opacity: 0, y: 50 }}
+    className="group relative"
+    initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: index * 0.1, duration: 0.8 }}
+    transition={{ delay: index * 0.1, duration: 0.6 }}
     viewport={{ once: true }}
-    whileHover={{ scale: 1.02 }}
   >
-    <div className="relative overflow-hidden">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover object-top transition-transform duration-300 hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-black/20"></div>
-    </div>
+    <div className="relative overflow-hidden rounded-3xl border border-cyan-500/20 hover:border-cyan-500/50 transition-all">
+      {/* Image */}
+      <div className="aspect-video overflow-hidden">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+        />
 
-    <div className="p-6 space-y-4">
-      <h3 className="text-xl font-semibold text-white">{title}</h3>
-
-      <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
-
-      <div className="flex flex-wrap gap-2">
-        {techs.map((tech) => (
-          <span
-            key={tech}
-            className="px-3 py-1 text-xs bg-blue-400/10 text-blue-400 rounded-full border border-blue-400/20"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex items-center gap-4 pt-2">
-        {liveUrl && (
+        {/* Overlay with Links */}
+        <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+          {liveUrl && (
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-14 h-14 rounded-full border border-cyan-500/50 hover:border-cyan-500 hover:bg-cyan-500/20 flex items-center justify-center text-cyan-400 transition-all"
+            >
+              <FiExternalLink size={20} />
+            </a>
+          )}
           <a
-            href={liveUrl}
+            href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-blue-400 text-gray-900 rounded-lg hover:bg-blue-500 transition-colors duration-300 text-sm font-medium"
+            className="w-14 h-14 rounded-full border border-purple-500/50 hover:border-purple-500 hover:bg-purple-500/20 flex items-center justify-center text-purple-400 transition-all"
           >
-            <FiExternalLink size={16} />
-            Live Demo
+            <FiGithub size={20} />
           </a>
-        )}
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:border-blue-400 hover:text-blue-400 transition-colors duration-300 text-sm font-medium"
-        >
-          <FiGithub size={16} />
-          Code
-        </a>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6 bg-black">
+        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+          {title}
+        </h3>
+        <p className="text-gray-400 text-sm leading-relaxed mb-4">
+          {description}
+        </p>
+
+        {/* Tech Tags */}
+        <div className="flex flex-wrap gap-2">
+          {techs.map((tech) => (
+            <span
+              key={tech}
+              className="px-3 py-1 text-xs text-cyan-300 bg-cyan-500/10 border border-cyan-500/20 rounded-full font-mono"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   </motion.div>
@@ -147,26 +152,49 @@ export default function Projects({ setCurrentPage }: Props) {
   ];
 
   return (
-    <section id={Pages.Works} className="py-20 px-6">
+    <section
+      id={Pages.Works}
+      className="py-32 px-6 relative overflow-hidden bg-black grid-pattern"
+    >
+      {/* Decorative elements */}
+      <div className="absolute top-32 left-20 w-32 h-px bg-gradient-to-r from-cyan-500/20 to-transparent" />
+      <div className="absolute bottom-32 right-20 w-32 h-px bg-gradient-to-l from-purple-500/20 to-transparent" />
+
+      {/* Floating shapes */}
       <motion.div
-        className="max-w-6xl mx-auto"
+        className="absolute top-40 left-1/3 w-2 h-2 bg-cyan-500 rounded-full"
+        animate={{
+          y: [0, -15, 0],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="max-w-7xl mx-auto relative z-10"
         onViewportEnter={() => setCurrentPage(Pages.Works)}
       >
-        {/* Section Header */}
+        {/* Section Title */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="text-blue-400">#</span>My Work
+          <span className="inline-block px-5 py-2 border border-cyan-500/30 rounded-full mb-4 text-cyan-400 font-mono text-sm uppercase tracking-widest">
+            Portfolio
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4">
+            Featured Projects
           </h2>
-          <div className="w-24 h-1 bg-blue-400 mx-auto"></div>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Here are some of my recent projects showcasing my skills in frontend
-            development, from responsive websites to mobile applications.
+            A showcase of my recent work, demonstrating expertise in modern web
+            development
           </p>
         </motion.div>
 
@@ -185,6 +213,24 @@ export default function Projects({ setCurrentPage }: Props) {
             />
           ))}
         </div>
+
+        {/* View More */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <a
+            href="https://github.com/khant21699"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 rounded-full border border-cyan-500/50 hover:border-cyan-500 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 font-semibold transition-all hover:scale-105"
+          >
+            View All Projects on GitHub
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   );

@@ -1,55 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
-@tailwind utilities; /* Custom scrollbar for webkit browsers */
+@tailwind utilities;
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 4px;
+  background: #22d3ee;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #60a5fa;
+  background: #06b6d4;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-}
-
-/* Base styles */
-* {
-  scrollbar-gutter: stable;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background-color: #111827;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background: #000000;
   color: #ffffff;
-  line-height: 1.6;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
 }
 
-/* Focus styles for accessibility */
+* {
+  cursor: none !important;
+}
+
+/* Custom selection */
+::selection {
+  background: #22d3ee;
+  color: #000000;
+}
+
+/* Subtle grid pattern */
+.grid-pattern {
+  background-image: linear-gradient(
+      rgba(34, 211, 238, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Focus styles */
 button:focus,
 a:focus {
-  outline: 2px solid #60a5fa;
+  outline: 2px solid #22d3ee;
   outline-offset: 2px;
 }
 
-/* Smooth transitions for all interactive elements */
 button,
 a {
-  transition: all 0.3s ease;
-}
-
-/* Custom selection color */
-::selection {
-  background-color: #60a5fa;
-  color: #111827;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

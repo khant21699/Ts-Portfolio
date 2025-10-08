@@ -18,14 +18,14 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
 
   const handleNavClick = (page: Pages) => {
     scrollFun(page);
-    setShowMbNav(false); // Close mobile nav when clicking
+    setShowMbNav(false);
   };
 
   const navItems = [
-    { page: Pages.Home, label: "Home" },
-    { page: Pages.AboutMe, label: "About" },
-    { page: Pages.Works, label: "Work" },
-    { page: Pages.Contact, label: "Contact" },
+    { page: Pages.Home, label: "Home", number: "01" },
+    { page: Pages.AboutMe, label: "About", number: "02" },
+    { page: Pages.Works, label: "Work", number: "03" },
+    { page: Pages.Contact, label: "Contact", number: "04" },
   ];
 
   return (
@@ -33,51 +33,52 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           !topOfPage
-            ? "bg-gray-900/90 backdrop-blur-lg border-b border-gray-800 shadow-lg"
+            ? "backdrop-blur-xl bg-black/80 border-b border-cyan-500/10"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-5">
           <div className="flex justify-between items-center">
             {/* Brand */}
-            <motion.div
-              className="text-2xl font-bold text-white cursor-pointer hover:text-blue-400 transition-colors duration-300"
+            <div
+              className="flex items-center gap-3 group"
               onClick={() => handleNavClick(Pages.Home)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
-              KHANT<span className="text-blue-400 text-lg">.dev</span>
-            </motion.div>
+              <div className="w-10 h-10 rounded-full border border-cyan-500/40 flex items-center justify-center group-hover:border-cyan-500 group-hover:bg-cyan-500/10 transition-all">
+                <span className="text-cyan-400 font-bold">K</span>
+              </div>
+              <span className="text-white font-bold text-lg">
+                KHANT<span className="text-cyan-400">.dev</span>
+              </span>
+            </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navItems.map(({ page, label }) => (
-                <motion.button
+            <div className="hidden md:flex items-center gap-2">
+              {navItems.map(({ page, label, number }) => (
+                <button
                   key={page}
                   onClick={() => handleNavClick(page)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                  className={`group px-6 py-3 rounded-full transition-all ${
                     currentPage === page
-                      ? "text-blue-400 bg-blue-400/10"
-                      : "text-gray-300 hover:text-blue-400 hover:bg-gray-800/50"
+                      ? "bg-cyan-500/10 text-white border border-cyan-500/30"
+                      : "text-gray-400 hover:text-white"
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-blue-400 mr-1">#</span>
-                  {label}
-                </motion.button>
+                  <span className="text-cyan-400 text-xs font-mono mr-2">
+                    {number}.
+                  </span>
+                  <span className="font-medium">{label}</span>
+                </button>
               ))}
             </div>
 
             {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden w-10 h-10 flex items-center justify-center text-white hover:text-blue-400 transition-colors duration-300 rounded-lg hover:bg-gray-800/50"
+            <button
+              className="md:hidden w-10 h-10 rounded-full border border-cyan-500/40 flex items-center justify-center hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"
               onClick={toggleMobileNav}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
-              <RxHamburgerMenu className="w-6 h-6" />
-            </motion.button>
+              <RxHamburgerMenu className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </nav>
@@ -88,7 +89,7 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/90 backdrop-blur-xl z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -97,55 +98,59 @@ export default function NavBar({ topOfPage, currentPage, scrollFun }: Props) {
 
             {/* Mobile Menu */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-80 bg-gray-900/95 backdrop-blur-lg border-l border-gray-800 z-50 md:hidden"
+              className="fixed top-0 right-0 h-full w-80 bg-black border-l border-cyan-500/10 z-50 md:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
             >
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex justify-between items-center p-6 border-b border-gray-800">
-                  <div className="text-xl font-bold text-white">
-                    KHANT<span className="text-blue-400">.dev</span>
+                <div className="flex justify-between items-center p-6 border-b border-cyan-500/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full border border-cyan-500/40 flex items-center justify-center">
+                      <span className="text-cyan-400 font-bold">K</span>
+                    </div>
+                    <span className="text-white font-bold">
+                      KHANT<span className="text-cyan-400">.dev</span>
+                    </span>
                   </div>
-                  <motion.button
+                  <button
                     onClick={toggleMobileNav}
-                    className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-300 rounded-lg hover:bg-gray-800/50"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="text-gray-400 hover:text-white transition-colors"
                   >
                     <RxCross1 className="w-5 h-5" />
-                  </motion.button>
+                  </button>
                 </div>
 
                 {/* Navigation Items */}
                 <div className="flex-1 flex flex-col justify-center px-6 space-y-2">
-                  {navItems.map(({ page, label }, index) => (
+                  {navItems.map(({ page, label, number }, index) => (
                     <motion.button
                       key={page}
                       onClick={() => handleNavClick(page)}
-                      className={`text-left p-4 text-xl font-medium rounded-lg transition-all duration-300 ${
+                      className={`text-left p-5 rounded-2xl transition-all ${
                         currentPage === page
-                          ? "text-blue-400 bg-blue-400/10 border-l-4 border-blue-400"
-                          : "text-gray-300 hover:text-blue-400 hover:bg-gray-800/50 hover:translate-x-2"
+                          ? "bg-cyan-500/10 text-white border border-cyan-500/30"
+                          : "text-gray-400 hover:text-white"
                       }`}
-                      initial={{ opacity: 0, x: 50 }}
+                      initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      transition={{ delay: index * 0.1 }}
                     >
-                      <span className="text-blue-400 mr-2">#</span>
-                      {label}
+                      <span className="text-cyan-400 text-xs font-mono mr-3">
+                        {number}.
+                      </span>
+                      <span className="text-lg font-semibold">{label}</span>
                     </motion.button>
                   ))}
                 </div>
 
                 {/* Footer */}
-                <div className="p-6 border-t border-gray-800">
-                  <p className="text-gray-400 text-sm text-center">
-                    Frontend Developer
+                <div className="p-6 border-t border-cyan-500/10">
+                  <p className="text-gray-500 text-sm">Frontend Developer</p>
+                  <p className="text-gray-600 text-xs mt-1">
+                    Bangkok, Thailand
                   </p>
                 </div>
               </div>

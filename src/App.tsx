@@ -6,6 +6,7 @@ import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
+import CustomCursor from "./Components/CustomCursor";
 import { Pages } from "./shared";
 
 function App() {
@@ -24,14 +25,15 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+    <div className="min-h-screen text-white overflow-x-hidden cursor-none">
+      <CustomCursor />
       <NavBar
         topOfPage={isTopOfPage}
         currentPage={currentPage}
         scrollFun={scrollToSection}
       />
 
-      <main className="relative">
+      <main className="relative z-10">
         <Hero setCurrentPage={setCurrentPage} />
         <About setCurrentPage={setCurrentPage} />
         <Projects setCurrentPage={setCurrentPage} />
