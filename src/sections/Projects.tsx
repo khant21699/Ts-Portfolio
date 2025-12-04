@@ -6,6 +6,8 @@ import Portfolio from "../assets/Portfolio.png";
 import RNMovie from "../assets/RNMovie.png";
 import News from "../assets/NewsApp.png";
 import Food from "../assets/FoodRecipe.png";
+import PleasureDomes from "../assets/pleasuredomes.png";
+import RabbitReader from "../assets/rabbit-reader.jpg";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 type Props = {
@@ -18,7 +20,7 @@ interface ProjectCardProps {
   techs: string[];
   image: string;
   liveUrl?: string;
-  githubUrl: string;
+  githubUrl?: string;
   index: number;
 }
 
@@ -59,14 +61,16 @@ const ProjectCard = ({
               <FiExternalLink size={20} />
             </a>
           )}
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-14 h-14 rounded-full border border-purple-500/50 hover:border-purple-500 hover:bg-purple-500/20 flex items-center justify-center text-purple-400 transition-all"
-          >
-            <FiGithub size={20} />
-          </a>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-14 h-14 rounded-full border border-purple-500/50 hover:border-purple-500 hover:bg-purple-500/20 flex items-center justify-center text-purple-400 transition-all"
+            >
+              <FiGithub size={20} />
+            </a>
+          )}
         </div>
       </div>
 
@@ -96,6 +100,29 @@ const ProjectCard = ({
 );
 
 export default function Projects({ setCurrentPage }: Props) {
+  const workProjects = [
+    {
+      title: "Rabbit Reader",
+      description:
+        "An AI-powered teaching assistant by Urvin.AI designed to answer student questions on assigned reading material and guide them through assignments by linking concepts throughout the material. Features include secure PDF viewing, text and graphics extraction, offensive word checking, custom glossary integration, and efficient n-gram processing. Perfect for document management and secure remote access to company documents.",
+      techs: [
+        "AI/ML",
+        "PDF Processing",
+        "Document Management",
+        "Secure Access",
+      ],
+      image: RabbitReader,
+    },
+    {
+      title: "Pleasure Domes.ai",
+      description:
+        "A premium AI companion platform where users can build, flirt, and interact with AI characters. Features include character creation tools, public character discovery, chat functionality, and a gallery system. The platform supports various character categories including real human, fictional, anime, and custom characters with advanced filtering and search capabilities.",
+      techs: ["AI/ML", "Character Creation", "Chat System", "User Interface"],
+      image: PleasureDomes,
+      liveUrl: "https://www.pleasuredomes.ai/",
+    },
+  ];
+
   const projects = [
     {
       title: "EvoGym",
@@ -198,21 +225,58 @@ export default function Projects({ setCurrentPage }: Props) {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              techs={project.techs}
-              image={project.image}
-              liveUrl={project.liveUrl}
-              githubUrl={project.githubUrl}
-              index={index}
-            />
-          ))}
-        </div>
+        {/* Work Projects Section */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
+            Work Projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {workProjects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                techs={project.techs}
+                image={project.image}
+                liveUrl={project.liveUrl}
+                index={index}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Personal Projects Section */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
+            Personal Projects
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                techs={project.techs}
+                image={project.image}
+                liveUrl={project.liveUrl}
+                githubUrl={project.githubUrl}
+                index={index + workProjects.length}
+              />
+            ))}
+          </div>
+        </motion.div>
 
         {/* View More */}
         <motion.div

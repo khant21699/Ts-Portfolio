@@ -139,7 +139,7 @@ export default function Contact({ setCurrentPage }: Props) {
                   <FiGithub size={20} />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/khantdev"
                   className="w-12 h-12 rounded-full border border-purple-500/30 hover:border-purple-500 hover:bg-purple-500/10 flex items-center justify-center text-gray-400 hover:text-purple-400 transition-all"
                 >
                   <FiLinkedin size={20} />

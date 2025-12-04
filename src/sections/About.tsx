@@ -28,7 +28,7 @@ export default function About({ setCurrentPage }: Props) {
   const experience = [
     {
       role: "Senior Frontend Developer",
-      company: "CONCEPTS UNLIMITED",
+      company: "CONCEPTS UNLIMITED PROJECT MANAGEMENT SERVICES",
       period: "2024 - Present",
     },
     {
