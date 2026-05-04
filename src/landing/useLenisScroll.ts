@@ -14,55 +14,22 @@ type LenisInternal = {
 };
 
 /**
- * Desktop: full Lenis smooth scroll with seamless infinite wrap (mutates
- * Lenis's internal scroll past the loopRef height so velocity is preserved).
+ * Seamless infinite scroll loop, on every device.
  *
- * Mobile (loopRef === null): no Lenis, no duplication — native momentum
- * scroll is far cheaper and feels right on touch devices. We still publish
- * scrollProgress / velocity / raw so the tunnel reacts to scroll.
+ * Desktop: Lenis smooth scroll + we mutate Lenis's animatedScroll/targetScroll
+ *   when crossing the loop boundary so velocity is preserved.
+ *
+ * Mobile: native momentum scroll (no Lenis — Lenis on touch devices was the
+ *   main source of lag earlier). When the user crosses the loop boundary, we
+ *   instantly snap window.scrollY back by loopHeight. Because the page renders
+ *   the same sections twice and the boundary sits exactly between the two
+ *   copies, the visual is identical pre/post-snap.
  */
 export function useLenisScroll(
-  loopRef: MutableRefObject<HTMLElement | null> | null
+  loopRef: MutableRefObject<HTMLElement | null>
 ) {
   useEffect(() => {
-    // Mobile / no-loop branch: native scroll only.
-    if (!loopRef) {
-      let lastY = window.scrollY;
-      let lastT = performance.now();
-
-      const onScroll = () => {
-        const y = window.scrollY;
-        const t = performance.now();
-        const docH =
-          document.documentElement.scrollHeight ||
-          document.body.scrollHeight ||
-          1;
-        const limit = Math.max(1, docH - window.innerHeight);
-        const dt = Math.max(1, t - lastT);
-        const v = ((y - lastY) / dt) * 1000; // px / sec
-        scrollProgress.set(Math.max(0, Math.min(1, y / limit)));
-        scrollVelocity.set(v);
-        scrollRaw.set(y);
-        lastY = y;
-        lastT = t;
-      };
-
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }
-
-    // Desktop branch: Lenis + seamless wrap.
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
-      .matches;
-
-    const lenis = new Lenis({
-      autoRaf: true,
-      lerp: reduced ? 1 : 0.085,
-      duration: 1.2,
-      smoothWheel: !reduced,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     let loopHeight = 0;
     const measure = () => {
@@ -76,6 +43,73 @@ export function useLenisScroll(
     if (loopRef.current) ro.observe(loopRef.current);
     window.addEventListener("resize", measure);
     const measureTimer = window.setTimeout(measure, 200);
+
+    // ---------------- MOBILE: native scroll + wrap ----------------
+    if (isMobile) {
+      let lastY = window.scrollY;
+      let lastT = performance.now();
+      let wrapping = false;
+
+      const onScroll = () => {
+        if (wrapping) return;
+        const y = window.scrollY;
+
+        if (loopHeight > 0) {
+          if (y >= loopHeight) {
+            wrapping = true;
+            window.scrollTo(0, y - loopHeight);
+            requestAnimationFrame(() => {
+              wrapping = false;
+              lastY = window.scrollY;
+            });
+            return;
+          }
+          if (y < 0) {
+            wrapping = true;
+            window.scrollTo(0, y + loopHeight);
+            requestAnimationFrame(() => {
+              wrapping = false;
+              lastY = window.scrollY;
+            });
+            return;
+          }
+        }
+
+        const t = performance.now();
+        const safe = loopHeight > 0 ? loopHeight : 1;
+        const wrapped = (((y % safe) + safe) % safe) / safe;
+        const dt = Math.max(1, t - lastT);
+        const v = ((y - lastY) / dt) * 1000;
+
+        scrollProgress.set(wrapped);
+        scrollVelocity.set(v);
+        scrollRaw.set(y);
+        lastY = y;
+        lastT = t;
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      return () => {
+        window.removeEventListener("scroll", onScroll);
+        window.clearTimeout(measureTimer);
+        ro.disconnect();
+        window.removeEventListener("resize", measure);
+      };
+    }
+
+    // ---------------- DESKTOP: Lenis + wrap ----------------
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches;
+
+    const lenis = new Lenis({
+      autoRaf: true,
+      lerp: reduced ? 1 : 0.085,
+      duration: 1.2,
+      smoothWheel: !reduced,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
 
     const onScroll = (e: LenisScrollEvent) => {
       if (loopHeight > 0) {

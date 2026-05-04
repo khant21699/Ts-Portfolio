@@ -45,8 +45,8 @@ const featured: Project[] = [
   {
     title: "pleasuredome.ai",
     description:
-      "Companion product to pleasuredomes.ai. A focused single-character AI experience with refined chat interface, persona tuning, and an immersive gallery layout.",
-    techs: ["AI/ML", "Conversational UI", "Persona Design", "Gallery"],
+      "Companion product to pleasuredomes.ai. A subscription platform built around AI Influencers, where fans follow individual AI creators, chat with them privately, and unlock exclusive posts and personalized content.",
+    techs: ["AI/ML", "Subscriptions", "Conversational UI", "Persona Design"],
     image: PleasureDome,
     liveUrl: "https://www.pleasuredome.ai/",
     year: "2024",

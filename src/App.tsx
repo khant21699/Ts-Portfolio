@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useTransform } from "framer-motion";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
@@ -9,26 +9,9 @@ import { Scene } from "./landing/Scene";
 import { useLenisScroll } from "./landing/useLenisScroll";
 import { scrollProgress } from "./landing/scrollState";
 
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia(`(max-width: ${breakpoint}px)`).matches
-      : false
-  );
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    const onChange = () => setIsMobile(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, [breakpoint]);
-  return isMobile;
-}
-
 function App() {
   const halfRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
-  // Pass loopRef only on desktop. Null disables Lenis + duplication.
-  useLenisScroll(isMobile ? null : halfRef);
+  useLenisScroll(halfRef);
 
   const pct = useTransform(scrollProgress, (p) =>
     String(Math.round(p * 100)).padStart(3, "0")
@@ -70,14 +53,8 @@ function App() {
       </footer>
 
       <main className="relative z-10">
-        {isMobile ? (
-          sections
-        ) : (
-          <>
-            <div ref={halfRef}>{sections}</div>
-            <div aria-hidden>{sections}</div>
-          </>
-        )}
+        <div ref={halfRef}>{sections}</div>
+        <div aria-hidden>{sections}</div>
       </main>
     </div>
   );
