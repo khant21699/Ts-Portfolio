@@ -4,67 +4,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #000000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #22d3ee;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
-}
-
-/* Smooth scrolling */
+/* Hide scrollbar — all browsers */
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+  background: #ede5d0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 body {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  background: #000000;
-  color: #ffffff;
-  line-height: 1.7;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #ede5d0;
+  color: #1a1812;
+  line-height: 1.5;
   overflow-x: hidden;
-  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  cursor: none !important;
-}
-
-/* Custom selection */
 ::selection {
-  background: #22d3ee;
-  color: #000000;
+  background: #1a1812;
+  color: #ede5d0;
 }
 
-/* Subtle grid pattern */
+.font-display {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-feature-settings: "ss01", "ss02";
+}
+
+.font-editorial {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.06em;
+}
+
+.font-body {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
 .grid-pattern {
   background-image: linear-gradient(
-      rgba(34, 211, 238, 0.03) 1px,
+      rgba(26, 24, 18, 0.04) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(26, 24, 18, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
-/* Focus styles */
-button:focus,
-a:focus {
-  outline: 2px solid #22d3ee;
-  outline-offset: 2px;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-button,
-a {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #1a1812;
+  outline-offset: 3px;
 }

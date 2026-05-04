@@ -1,169 +1,117 @@
 import { motion } from "framer-motion";
 import { Pages } from "../shared";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 type Props = {
   setCurrentPage: (value: Pages) => void;
 };
 
+const TITLE = "KHANT";
+const ENTER = {
+  initial: { y: "110%" },
+  animate: { y: 0 },
+};
+
 export default function Hero({ setCurrentPage }: Props) {
-  const scrollToContact = () => {
-    const element = document.getElementById(Pages.Contact);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section
+    <motion.section
       id={Pages.Home}
-      className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden bg-black grid-pattern"
+      onViewportEnter={() => setCurrentPage(Pages.Home)}
+      className="relative min-h-[100svh] flex flex-col justify-between px-5 sm:px-10 pt-28 pb-20"
     >
-      {/* Subtle accent decorations */}
-      <div className="absolute top-1/4 right-0 w-px h-64 bg-gradient-to-b from-transparent via-cyan-500/30 to-transparent" />
-      <div className="absolute bottom-1/4 left-0 w-px h-64 bg-gradient-to-b from-transparent via-purple-500/30 to-transparent" />
-
-      {/* Floating shapes */}
-      <motion.div
-        className="absolute top-20 right-20 w-3 h-3 bg-cyan-500 rounded-full"
-        animate={{
-          y: [0, -20, 0],
-          opacity: [0.3, 0.7, 0.3],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-32 left-32 w-2 h-2 bg-purple-500 rounded-full"
-        animate={{
-          y: [0, 20, 0],
-          opacity: [0.3, 0.7, 0.3],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="max-w-6xl mx-auto w-full relative z-10"
-        onViewportEnter={() => setCurrentPage(Pages.Home)}
-      >
-        <div className="text-center space-y-12">
-          {/* Main Content */}
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="inline-block px-5 py-2 border border-cyan-500/30 rounded-full mb-4"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <p className="text-cyan-400 font-mono text-sm uppercase tracking-widest">
-                Frontend Developer
-              </p>
-            </motion.div>
-
-            <motion.h1
-              className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              Hi, I'm <span className="text-cyan-400">Khant</span>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              Building exceptional digital experiences with React, Next.js,
-              Vue.js & TypeScript
-            </motion.p>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-4 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <button
-              onClick={scrollToContact}
-              className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50"
-            >
-              Get In Touch
-            </button>
-
-            <a
-              href="mailto:khantdev21@gmail.com"
-              className="px-8 py-4 border border-cyan-500/50 hover:border-cyan-500 text-cyan-400 hover:text-cyan-300 font-semibold rounded-full transition-all hover:scale-105"
-            >
-              Send Email
-            </a>
-          </motion.div>
-
-          {/* Info Cards */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <div className="border border-cyan-500/20 rounded-3xl p-6 hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all">
-              <p className="text-4xl font-bold text-white mb-2">2+</p>
-              <p className="text-sm text-gray-400 uppercase tracking-wider">
-                Years Experience
-              </p>
-            </div>
-
-            <div className="border border-purple-500/20 rounded-3xl p-6 hover:border-purple-500/50 hover:bg-purple-500/5 transition-all">
-              <p className="text-4xl font-bold text-white mb-2">Bangkok</p>
-              <p className="text-sm text-gray-400 uppercase tracking-wider">
-                Based In Thailand
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            className="flex gap-4 justify-center pt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
-          >
-            <a
-              href="https://github.com/khant21699"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 rounded-full border border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-500/10 flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
-            >
-              <FiGithub size={20} />
-            </a>
-            <a
-              href="#"
-              className="w-12 h-12 rounded-full border border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-500/10 flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
-            >
-              <FiLinkedin size={20} />
-            </a>
-            <a
-              href="mailto:khantdev21@gmail.com"
-              className="w-12 h-12 rounded-full border border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-500/10 flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all"
-            >
-              <FiMail size={20} />
-            </a>
-          </motion.div>
+      <div className="grid grid-cols-12 gap-4">
+        <div className="col-span-12 md:col-span-6 flex items-baseline gap-3">
+          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
+            00 / Intro
+          </span>
+          <span className="h-px w-10 bg-[#1a1812]/30" />
+          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
+            2026
+          </span>
         </div>
+        <div className="col-span-12 md:col-span-6 md:text-right">
+          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
+            Portfolio in Motion
+          </span>
+        </div>
+      </div>
+
+      <div className="relative z-20 text-[#1a1812]">
+        <h1
+          aria-label="Khant"
+          className="font-display tracking-[-0.04em] leading-[0.78] text-[clamp(6rem,26vw,22rem)] flex justify-center overflow-hidden"
+        >
+          {TITLE.split("").map((c, i) => (
+            <motion.span
+              key={i}
+              initial={ENTER.initial}
+              animate={ENTER.animate}
+              transition={{
+                duration: 1.1,
+                delay: 0.15 + i * 0.06,
+                ease: [0.65, 0, 0.35, 1],
+              }}
+              className="inline-block"
+            >
+              {c}
+            </motion.span>
+          ))}
+        </h1>
+      </div>
+
+      <div className="grid grid-cols-12 gap-4 items-end">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.9, ease: "easeOut" }}
+          className="col-span-12 md:col-span-5"
+        >
+          <p className="font-display italic text-2xl sm:text-3xl leading-[1.15] text-[#1a1812]">
+            Frontend developer crafting digital experiences with React,
+            Next.js, Vue.js and TypeScript.
+          </p>
+        </motion.div>
+
+        <div className="col-span-12 md:col-span-3 md:col-start-7 flex flex-col gap-1 font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/70">
+          <span>Currently</span>
+          <span className="text-[#1a1812]">
+            Senior Frontend Developer
+          </span>
+          <span>at Concepts Unlimited</span>
+        </div>
+
+        <div className="col-span-12 md:col-span-2 md:col-start-11 md:text-right flex md:flex-col gap-3 md:gap-1 font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/70">
+          <a
+            href="https://github.com/khant21699"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#1a1812] transition-colors"
+          >
+            Github ↗
+          </a>
+          <a
+            href="https://www.linkedin.com/in/khantdev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#1a1812] transition-colors"
+          >
+            LinkedIn ↗
+          </a>
+          <a
+            href="mailto:khantdev21@gmail.com"
+            className="hover:text-[#1a1812] transition-colors"
+          >
+            Email ↗
+          </a>
+        </div>
+      </div>
+
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute left-1/2 -translate-x-1/2 bottom-6 font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60"
+      >
+        ↓ Scroll to begin
       </motion.div>
-    </section>
+    </motion.section>
   );
 }
