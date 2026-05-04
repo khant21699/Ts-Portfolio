@@ -11,10 +11,6 @@ import PleasureDomes from "../assets/pleasuredomes.png";
 import PleasureDome from "../assets/pleasuredome.png";
 import RabbitReader from "../assets/rabbit-reader.jpg";
 
-type Props = {
-  setCurrentPage: (value: Pages) => void;
-};
-
 type Project = {
   title: string;
   description: string;
@@ -125,20 +121,19 @@ const archive: Project[] = [
   },
 ];
 
-export default function Projects({ setCurrentPage }: Props) {
+export default function Projects() {
   return (
-    <motion.section
+    <section
       id={Pages.Works}
-      onViewportEnter={() => setCurrentPage(Pages.Works)}
       className="relative px-5 sm:px-10 py-32 sm:py-44"
     >
       <div className="grid grid-cols-12 gap-4 mb-20">
         <div className="col-span-12 md:col-span-6 flex items-baseline gap-3">
-          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
+          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#ede5d0]/60">
             02 / Works
           </span>
-          <span className="h-px w-10 bg-[#1a1812]/30" />
-          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
+          <span className="h-px w-10 bg-[#ede5d0]/30" />
+          <span className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#ede5d0]/60">
             Selected Projects
           </span>
         </div>
@@ -149,7 +144,7 @@ export default function Projects({ setCurrentPage }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-15%" }}
         transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
-        className="font-display tracking-[-0.03em] leading-[0.92] text-[clamp(2.75rem,9vw,8rem)] text-[#1a1812] relative z-20 mb-24 max-w-[16ch]"
+        className="font-display tracking-[-0.03em] leading-[0.92] text-[clamp(2.75rem,9vw,8rem)] text-[#ede5d0] relative z-20 mb-24 max-w-[16ch]"
       >
         A few things I've shipped.
       </motion.h2>
@@ -162,23 +157,27 @@ export default function Projects({ setCurrentPage }: Props) {
 
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 md:col-span-2 md:col-start-1">
-          <div className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60 sticky top-32">
+          <div className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#ede5d0]/60 sticky top-32">
             Archive
-            <br />
-            2023 / 2024
           </div>
         </div>
-        <ul className="col-span-12 md:col-span-9 md:col-start-4 divide-y divide-[#1a1812]/15 border-y border-[#1a1812]/15">
+        <ul className="col-span-12 md:col-span-9 md:col-start-4 divide-y divide-[#ede5d0]/15 border-y border-[#ede5d0]/15">
           {archive.map((p) => (
             <ArchiveRow key={p.title} project={p} />
           ))}
         </ul>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
-function FeaturedProject({ project, index }: { project: Project; index: number }) {
+function FeaturedProject({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   const flip = index % 2 === 1;
   return (
     <motion.article
@@ -197,15 +196,17 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
           href={project.liveUrl ?? "#"}
           target={project.liveUrl ? "_blank" : undefined}
           rel="noopener noreferrer"
-          className="group block relative overflow-hidden bg-[#1a1812]/5"
+          className="group block relative overflow-hidden bg-[#ede5d0]/5"
         >
           <img
             src={project.image}
             alt={project.title}
-            className="w-full aspect-[4/3] object-cover sm:grayscale sm:group-hover:grayscale-0 transition-all duration-700 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async"
+            className="w-full aspect-[4/3] object-cover sm:grayscale sm:group-hover:grayscale-0 transition-[filter,transform] duration-700 group-hover:scale-[1.02]"
           />
           {project.liveUrl && (
-            <span className="absolute bottom-4 right-4 font-editorial text-[10px] uppercase tracking-[0.4em] text-[#ede5d0] bg-[#1a1812]/80 px-3 py-1.5">
+            <span className="absolute bottom-4 right-4 font-editorial text-[10px] uppercase tracking-[0.4em] text-[#0a0a0e] bg-[#ede5d0]/80 px-3 py-1.5">
               Visit ↗
             </span>
           )}
@@ -217,22 +218,21 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
           flip ? "md:col-start-2 md:order-1" : "md:col-start-9"
         } space-y-6`}
       >
-        <div className="flex items-baseline justify-between font-editorial text-[10px] uppercase tracking-[0.4em] text-[#1a1812]/60">
-          <span>{`F/0${index + 1}`}</span>
-          <span>{project.year}</span>
+        <div className="font-editorial text-[10px] uppercase tracking-[0.4em] text-[#ede5d0]/60">
+          {`F/0${index + 1}`}
         </div>
         <h3 className="font-display text-3xl sm:text-4xl leading-[1.05] tracking-[-0.02em]">
           {project.title}
         </h3>
-        <p className="font-body text-[#1a1812]/75 leading-relaxed">
+        <p className="font-body text-[#ede5d0]/75 leading-relaxed">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-x-3 gap-y-1 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#1a1812]/60">
+        <div className="flex flex-wrap gap-x-3 gap-y-1 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60">
           {project.techs.map((t) => (
             <span key={t}>{t}</span>
           ))}
         </div>
-        <div className="font-editorial text-[10px] uppercase tracking-[0.3em] text-[#1a1812]/60">
+        <div className="font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60">
           Role / {project.role}
         </div>
       </div>
@@ -246,26 +246,23 @@ function ArchiveRow({ project }: { project: Project }) {
     <li
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="relative"
+      className="relative group"
     >
       <a
         href={project.liveUrl ?? project.githubUrl ?? "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group grid grid-cols-12 gap-4 items-baseline py-7 transition-colors"
+        className="grid grid-cols-12 gap-4 items-baseline py-7"
       >
-        <div className="col-span-1 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#1a1812]/50">
-          {project.year}
-        </div>
-        <div className="col-span-6 sm:col-span-5">
+        <div className="col-span-7 sm:col-span-6">
           <div className="font-display text-2xl sm:text-3xl leading-tight tracking-[-0.02em]">
             {project.title}
           </div>
         </div>
-        <div className="hidden sm:block col-span-4 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#1a1812]/60">
+        <div className="hidden sm:block col-span-4 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60">
           {project.techs.join(" · ")}
         </div>
-        <div className="col-span-5 sm:col-span-2 text-right font-editorial text-[10px] uppercase tracking-[0.3em] text-[#1a1812]/60 group-hover:text-[#1a1812]">
+        <div className="col-span-5 sm:col-span-2 text-right font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60 group-hover:text-[#ede5d0] transition-colors">
           {project.liveUrl ? "Visit ↗" : project.githubUrl ? "Source ↗" : "//"}
         </div>
       </a>
@@ -275,11 +272,13 @@ function ArchiveRow({ project }: { project: Project }) {
         initial={false}
         animate={{ opacity: hover ? 1 : 0, scale: hover ? 1 : 0.95 }}
         transition={{ duration: 0.4, ease: [0.65, 0, 0.35, 1] }}
-        className="pointer-events-none hidden md:block absolute -top-12 right-0 w-64 aspect-[4/3] overflow-hidden border border-[#1a1812]/20 z-10 bg-[#ede5d0]"
+        className="pointer-events-none hidden md:block absolute -top-12 right-0 w-64 aspect-[4/3] overflow-hidden border border-[#ede5d0]/20 z-10 bg-[#0a0a0e]"
       >
         <img
           src={project.image}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover grayscale"
         />
       </motion.div>

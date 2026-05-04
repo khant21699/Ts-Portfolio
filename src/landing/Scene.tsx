@@ -1,10 +1,9 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Grain } from "./Grain";
+import TunnelBackground from "../Components/ui/tunnel-hero";
 
 export function Scene() {
   return (
-    <Canvas
+    <div
+      aria-hidden
       style={{
         position: "fixed",
         top: 0,
@@ -14,15 +13,17 @@ export function Scene() {
         zIndex: 1,
         pointerEvents: "none",
       }}
-      dpr={[1, 2]}
-      camera={{ position: [0, 0, 4.4], fov: 35 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
     >
-      <Suspense fallback={null}>
-        <ambientLight intensity={1.1} />
-        <directionalLight position={[5, 6, 4]} intensity={0.6} color="#ffffff" />
-        <Grain />
-      </Suspense>
-    </Canvas>
+      <TunnelBackground />
+      {/* Very subtle inky wash so editorial body text stays readable.
+          No center vignette — we want the tunnel rings to wrap the page. */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(10,10,14,0.28)",
+        }}
+      />
+    </div>
   );
 }

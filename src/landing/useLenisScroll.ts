@@ -13,10 +13,46 @@ type LenisInternal = {
   targetScroll: number;
 };
 
+/**
+ * Desktop: full Lenis smooth scroll with seamless infinite wrap (mutates
+ * Lenis's internal scroll past the loopRef height so velocity is preserved).
+ *
+ * Mobile (loopRef === null): no Lenis, no duplication — native momentum
+ * scroll is far cheaper and feels right on touch devices. We still publish
+ * scrollProgress / velocity / raw so the tunnel reacts to scroll.
+ */
 export function useLenisScroll(
-  loopRef: MutableRefObject<HTMLElement | null>
+  loopRef: MutableRefObject<HTMLElement | null> | null
 ) {
   useEffect(() => {
+    // Mobile / no-loop branch: native scroll only.
+    if (!loopRef) {
+      let lastY = window.scrollY;
+      let lastT = performance.now();
+
+      const onScroll = () => {
+        const y = window.scrollY;
+        const t = performance.now();
+        const docH =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight ||
+          1;
+        const limit = Math.max(1, docH - window.innerHeight);
+        const dt = Math.max(1, t - lastT);
+        const v = ((y - lastY) / dt) * 1000; // px / sec
+        scrollProgress.set(Math.max(0, Math.min(1, y / limit)));
+        scrollVelocity.set(v);
+        scrollRaw.set(y);
+        lastY = y;
+        lastT = t;
+      };
+
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+
+    // Desktop branch: Lenis + seamless wrap.
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
       .matches;
 
