@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1200px; height:630px; }
+  body {
+    background:#0a0a0e;
+    position:relative;
+    overflow:hidden;
+    font-family:"JetBrains Mono", monospace;
+  }
+  /* faint grid */
+  .grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(237,229,208,0.030) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(237,229,208,0.030) 1px, transparent 1px);
+    background-size:100px 100px;
+  }
+  /* teal glow, upper right */
+  .glow {
+    position:absolute;
+    top:-260px; right:-200px;
+    width:900px; height:900px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(34,211,238,0.13) 0%, rgba(34,211,238,0.04) 40%, transparent 70%);
+  }
+  .frame {
+    position:absolute; inset:0;
+    padding:58px 66px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .bar { display:flex; align-items:center; gap:26px; }
+  .meta {
+    font-size:14px; font-weight:500;
+    letter-spacing:0.34em;
+    color:rgba(237,229,208,0.45);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .meta.bright { color:rgba(237,229,208,0.92); }
+  .rule { flex:1; height:1px; background:rgba(237,229,208,0.22); }
+  .dot {
+    width:11px; height:11px; border-radius:50%;
+    background:#22d3ee;
+    box-shadow:0 0 14px 3px rgba(34,211,238,0.55);
+    flex:none;
+  }
+  .middle { margin-top:-6px; }
+  h1 {
+    font-family:"Playfair Display", serif;
+    font-weight:700;
+    font-size:196px;
+    line-height:0.92;
+    letter-spacing:0.01em;
+    color:#ede5d0;
+  }
+  .tagline {
+    font-family:"Playfair Display", serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:41px;
+    line-height:1.28;
+    color:rgba(237,229,208,0.88);
+    margin-top:16px;
+    max-width:16ch;
+    white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="frame">
+    <div class="bar">
+      <span class="meta">Portfolio — 2026</span>
+      <span class="rule"></span>
+      <span class="dot"></span>
+      <span class="meta bright">Bangkok, TH</span>
+    </div>
+
+    <div class="middle">
+      <h1>KHANT</h1>
+      <div class="tagline">
+        Frontend developer crafting digital experiences<br />
+        with React, Next.js, Vue.js and TypeScript.
+      </div>
+    </div>
+
+    <div class="bar">
+      <span class="meta">React / Next.js / Vue / TypeScript</span>
+      <span class="rule"></span>
+      <span class="meta bright">Khant.dev</span>
+    </div>
+  </div>
+</body>
+</html>

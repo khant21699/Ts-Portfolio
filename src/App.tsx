@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useTransform } from "framer-motion";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
@@ -16,10 +16,6 @@ function App() {
   const pct = useTransform(scrollProgress, (p) =>
     String(Math.round(p * 100)).padStart(3, "0")
   );
-
-  useEffect(() => {
-    document.title = "Khant · Frontend Developer";
-  }, []);
 
   const sections = (
     <>
