@@ -6,12 +6,17 @@ import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 import { Scene } from "./landing/Scene";
+import { Loader } from "./landing/Loader";
+import { useTunnel } from "./landing/useTunnel";
 import { useLenisScroll } from "./landing/useLenisScroll";
 import { scrollProgress } from "./landing/scrollState";
 
 function App() {
   const halfRef = useRef<HTMLDivElement>(null);
   useLenisScroll(halfRef);
+
+  // The WebGL backdrop streams in on idle; hold the loading screen until then.
+  const { Tunnel, status } = useTunnel();
 
   const pct = useTransform(scrollProgress, (p) =>
     String(Math.round(p * 100)).padStart(3, "0")
@@ -28,7 +33,8 @@ function App() {
 
   return (
     <div className="relative min-h-screen text-[#ede5d0] bg-[#0a0a0e] overflow-x-hidden">
-      <Scene />
+      <Loader active={status === "loading"} />
+      <Scene tunnel={Tunnel} />
 
       <header className="fixed top-0 inset-x-0 z-30 flex justify-between items-center px-5 sm:px-10 py-5 text-[#ede5d0]">
         <div className="flex items-center gap-3">

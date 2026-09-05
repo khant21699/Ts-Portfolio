@@ -176,3 +176,105 @@ a:focus-visible {
     animation: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   Loading screen mark — a CSS-3D gyroscope.
+   Three rings tumbling on different axes under one shared perspective.
+   Transform-only, so it stays on the compositor; ~1 KB, no JS, no WebGL.
+   --------------------------------------------------------------- */
+
+.gyro {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  perspective: 520px;
+  transform-style: preserve-3d;
+}
+
+.gyro__ring {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 50%;
+  border: 1px solid;
+  will-change: transform;
+}
+
+.gyro__ring--outer {
+  width: 132px;
+  height: 132px;
+  border-color: rgba(237, 229, 208, 0.45);
+  animation: gyro-tumble-x 3.6s linear infinite;
+}
+
+.gyro__ring--mid {
+  width: 94px;
+  height: 94px;
+  border-color: rgba(34, 211, 238, 0.7);
+  animation: gyro-tumble-y 2.6s linear infinite;
+}
+
+.gyro__ring--inner {
+  width: 58px;
+  height: 58px;
+  border-color: rgba(237, 69, 153, 0.7);
+  animation: gyro-precess 2s linear infinite;
+}
+
+.gyro__core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ede5d0;
+  box-shadow: 0 0 14px rgba(237, 229, 208, 0.75);
+  animation: gyro-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes gyro-tumble-x {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(360deg);
+  }
+}
+
+@keyframes gyro-tumble-y {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes gyro-precess {
+  from {
+    transform: rotateX(62deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(62deg) rotateZ(360deg);
+  }
+}
+
+@keyframes gyro-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gyro__ring,
+  .gyro__core {
+    animation: none;
+  }
+}

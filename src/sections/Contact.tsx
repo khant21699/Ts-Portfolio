@@ -86,7 +86,7 @@ export default function Contact() {
         className="mt-32 pt-10 border-t border-[#ede5d0]/15 grid grid-cols-12 gap-4 items-end"
       >
         <div className="col-span-12 md:col-span-6 font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60">
-          © {new Date().getFullYear()} Khant. Built with React, TypeScript & Tailwind CSS.
+          © {new Date().getFullYear()} Khant. Built with React, Three.js & TypeScript.
         </div>
         <div className="col-span-12 md:col-span-6 md:text-right font-editorial text-[10px] uppercase tracking-[0.3em] text-[#ede5d0]/60">
           Thanks for scrolling.
