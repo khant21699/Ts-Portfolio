@@ -24,12 +24,12 @@ const experience = [
   {
     role: "Senior Frontend Developer",
     company: "Concepts Unlimited Project Management Services",
-    period: "2024 / Now",
+    period: "2024 Apr - 2026 Sep",
   },
   {
     role: "Junior Developer",
     company: "Akiya Research",
-    period: "2023 / 2024",
+    period: "2022 Jan - 2024 Jan",
   },
 ];
 

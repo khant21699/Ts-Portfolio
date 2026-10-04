@@ -191,7 +191,7 @@ export default function AboutMe({ setCurrentPage }: Props) {
                   visible: { opacity: 1, x: 0 },
                 }}
               >
-                <ExperienceItem text="Junior Developer at Akiya Research (2023,Jan - 2024,Jan)" />
+                <ExperienceItem text="Junior Developer at Akiya Research (2022,Jan - 2024,Jan)" />
               </motion.div>
               <motion.div
                 initial="hidden"
